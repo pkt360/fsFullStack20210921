@@ -3,50 +3,74 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
     <title>Presentación</title>
   </head>
   <body>
-    <nav class=".button">
-      <li><a href="sakila.html">Sakila</a></li>
-      <li><a href="formulario.html">Formulario</a></li>
-    </nav>
-    <section>
-      <hgroup>
-        <h1>Francisco José Lucena Coín</h1>
-        <img src="./images/francisco.jpg" alt="Foto de Francisco" />
+     
+      <header class="header">
+        <div class="div--header--contenedor">
+          <div class="div--header--contenedor--nombre">
+            <h1 class="header__nombre">Francisco José Lucena Coín</h1>
+          </div>
+        <div class="div--header--contenedor--img">
+          <img
+           class="header__img"
+            src="./images/francisco.jpg"
+            alt="Foto de Francisco"
+          />
+        </div>
+      </header>
+    
+    <div class="div--nav">
+      <nav class="nav">
+        <li class="li--sakila">
+          <a href="sakila.html">Sakila</a>
+        </li>
+        <li class="li--formulario">
+          <a href="formulario.html">Formulario</a>
+        </li>
+      </nav>
+    </div>
 
-        <h2>Sobre mi</h2>
-        <p>
-            Me llamo Francisco josé Lucena Coín y soy de Málaga y tengo cuarenta años. 
-            Estudié administrativo FpII, ASI y DAW y mis hobbies a parte de la tecnología son el cine y el deporte
-        </p>
-        <h2>Educación</h2>
-        <ul>
-          <li>EGB</li>
-          <li>Técnico especialista administrativo FPII</li>
-          <li>Administración de Sisstemas Informáticos (Cenec)</li>
-          <li>Desarrollo de Aplicaciones Web (FOC)</li>
-        </ul>
-        
-        <h2>Conocimientos</h2>
-        <ul>
-          <li>HTML</li>
-          <li>CSS</li>
-          <li>JavaScript</li>
-          <li>PHP</li>
-          <li>JAVA</li>
-          <li>SQL</li>
-        </ul>
-      </hgroup>
+    <div class="div--section">
+      <section class="section">
+        <hgroup class="hgroup">
+          <h1 class="h1">Sobre mi</h1>
+          <p class="p">
+            Me llamo Francisco josé Lucena Coín y soy de Málaga y tengo cuarenta
+            años. Estudié administrativo FpII, ASI y DAW y mis hobbies a parte
+            de la tecnología son el cine y el deporte
+          </p>
+          <h2 class="h2--educacion">Educación</h2>
+          <ul class="ul-educacion">
+            <li>EGB</li>
+            <li>Técnico especialista administrativo FPII</li>
+            <li>Administración de Sisstemas Informáticos (Cenec)</li>
+            <li>Desarrollo de Aplicaciones Web (FOC)</li>
+          </ul>
 
-      <h2></h2>
-    </section>
+          <h2 class="h2--conocimientos">Conocimientos</h2>
+          <ul class="ul-conocimientos">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>PHP</li>
+            <li>JAVA</li>
+            <li>SQL</li>
+          </ul>
+        </hgroup>
 
-    <footer>
+        <h2></h2>
+      </section>
+    </div>
+
+    <div class="div--footer">
+      <footer class="footer">
         <p>
           Autor: Francisco <a href="prueba@gmail.com">Correo electrónico</a>
         </p>
-     </footer>
-
+      </footer>
+    </div>
   </body>
 </html>
