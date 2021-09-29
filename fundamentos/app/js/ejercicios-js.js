@@ -40,15 +40,22 @@ else{
 
 
 
+
+
 //Ejercicio_3
 //Crear una función que devuelva un array con el numero de elementos indicado, inicializados al valor suministrado
 
 function ejercico_3(){
     var numero = prompt("Introduce el número de arrays");
-    for (let i = 0; i < numero; i++){
-     //   var array(i) = new array(i);
-     //   document.write(array);
+   
+    array = Array(numero) = new Array[numero];
+    document.write();
+   
+    /* for (let i = 0; i < numero; i++){
+        Array(i) = new Array[i];
+     
     }
+    */
 }
 
 
@@ -124,4 +131,4 @@ function ejercicio_6(){
         document.write(cadenaPal === invertir(cadenaPal));
 }
 
-ejercicio_1();
+ejercicio_3();
