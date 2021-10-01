@@ -1,0 +1,83 @@
+html{   
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.marco--principal{
+    
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items:center;
+    justify-content: center;
+    box-sizing:border-box;
+}
+
+.marco--secundario{
+    width: 45%;
+    height: 75%;  
+    margin-top: 5%;
+}
+
+.calculadora{
+    border: 2px solid black;
+    background-color: rgb(207, 214, 221);
+    width: 100%;
+    height: 100%;
+    
+}
+
+.pantalla{
+    border: 2px solid black;
+    background-color: white;
+    box-sizing:border-box;
+    width: 90%;
+    height: 25%;
+    margin-left: 5%;
+    margin-top: 2%;
+    
+}
+
+.pantalla--arriba{
+    width: 100%;
+    height: 48%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-bottom: ridge;
+}
+
+.pantalla--abajo{
+    width: 100%;
+    height: 48%;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.calculadora__teclado{
+    width: 100%;
+    height: 75%;
+    
+}
+
+
+tr{
+    width: auto;
+    height: auto;
+}
+
+td{
+    width: 15%;
+    height: 25px;
+    text-align: center;
+    vertical-align: center;
+    border: 1px solid black;
+}

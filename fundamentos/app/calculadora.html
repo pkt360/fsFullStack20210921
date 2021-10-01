@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=chrome">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/calculadora.css" />
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="marco--principal">
+        <div class="marco--secundario">
+        <div class="calculadora">
+            <div class="pantalla">
+                <input class = "pantalla--arriba" type="text"/>
+                <input class="pantalla--abajo" type="text"/>
+            </div>
+            <table class="calculadora__teclado">
+                <tr>
+                    <td> <button id="__boton--1" class="numero">1</button></td>
+                    <td> <button id="__boton--2" class="numero">2</button></td>
+                    <td> <button id="__boton--3" class="numero">3</button></td>
+                    <td> <button id="__boton--borrar" >C</button></td>
+                    <td> <button id = "multiplicar" class="operador">X</button></td>
+                </tr>
+                <tr>
+                    <td> <button id="__boton--4" class="numero">4</button></td>
+                    <td> <button id="__boton--5" class="numero">5</button></td>
+                    <td> <button id="__boton--6" class="numero">6</button></td>
+                    <td> <button id ="retroceso" class="operador">&larr;</button></td>
+                    <td> <button id ="dividir" class="operadores">&divide;</button></td>
+                </tr>
+                <tr>
+                    <td> <button id="__boton--7" class="numero">7</button></td>
+                    <td> <button id="__boton--8" class="numero">8</button></td>
+                    <td> <button id="__boton--9" class="numero">9</button></td>
+                    <td> <button id="sumar" class="operador">+</button></td>
+                    <td> <button id="restar" class="operador">-</button></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td> <button id="__boton--0" class="numero">0</button></td>
+                    <td> <button id="coma" class="__boton--coma">,</button></td>
+                    <td> <button ></td>
+                    <td> <button class="__boton--resultado">=</button></td>
+                </tr>
+
+            </table>
+        </div>
+        </div>
+    </div>
+
+
+    <script rel="text/javascript" src="./js/calculadora.js"></script>
+
+    <script>
+        ()=>{
+        let boton_1 = document.querySelector('.__boton--1');
+        let boton_2 = document.querySelector('.__boton--2');
+        let boton_3 = document.querySelector('.__boton--3');
+        let boton_4 = document.querySelector('.__boton--4');
+        let boton_5 = document.querySelector('.__boton--5');
+        let boton_6 = document.querySelector('.__boton--6');
+        let boton_7 = document.querySelector('.__boton--7');
+        let boton_8 = document.querySelector('.__boton--8');
+        let boton_9 = document.querySelector('.__boton--9');
+        let boton_0 = document.querySelector('.__boton--0');
+        let borrar  = document.querySelector('.__boton--borrar');
+        let corregir = document.querySelector('.__boton--corregir');
+        let multiplicar = document.querySelector('.__boton--multiplicar');
+        let dividir = document.querySelector('.__boton--dividir');
+        let pantalla_r = document.querySelector('pantalla--arriba');
+        let pantalla_o = document.querySelector('pantalla--abajo');
+        
+        let calculadora = new calculadora();
+
+        document.querySelectorAll('.numero').forEach(tag =>{
+            tag.addEventListener('click', evento =>{
+                calculadora.escribirNumero(evento.target.textContent);
+                pantalla_o.value = calculadora.pantallaOperacion;
+                pantalla_r.value = calculadora.resultado;
+            })
+        });
+        
+        borrar.addEventListener('click', () =>{
+            borrarPantalla();
+            actualizarPantalla();
+        });
+        
+    }
+    </script>
+</body>
+</html>
