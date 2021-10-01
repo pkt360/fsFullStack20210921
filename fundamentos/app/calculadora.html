@@ -42,7 +42,7 @@
                     <td></td>
                     <td> <button id="__boton--0" class="numero">0</button></td>
                     <td> <button id="coma" class="__boton--coma">,</button></td>
-                    <td> <button ></td>
+                    <td> </td>
                     <td> <button class="__boton--resultado">=</button></td>
                 </tr>
 
@@ -56,20 +56,20 @@
 
     <script>
         ()=>{
-        let boton_1 = document.querySelector('.__boton--1');
-        let boton_2 = document.querySelector('.__boton--2');
-        let boton_3 = document.querySelector('.__boton--3');
-        let boton_4 = document.querySelector('.__boton--4');
-        let boton_5 = document.querySelector('.__boton--5');
-        let boton_6 = document.querySelector('.__boton--6');
-        let boton_7 = document.querySelector('.__boton--7');
-        let boton_8 = document.querySelector('.__boton--8');
-        let boton_9 = document.querySelector('.__boton--9');
-        let boton_0 = document.querySelector('.__boton--0');
-        let borrar  = document.querySelector('.__boton--borrar');
-        let corregir = document.querySelector('.__boton--corregir');
-        let multiplicar = document.querySelector('.__boton--multiplicar');
-        let dividir = document.querySelector('.__boton--dividir');
+        let boton_1 = document.querySelector('#__boton--1');
+        let boton_2 = document.querySelector('#__boton--2');
+        let boton_3 = document.querySelector('#__boton--3');
+        let boton_4 = document.querySelector('#__boton--4');
+        let boton_5 = document.querySelector('#__boton--5');
+        let boton_6 = document.querySelector('#__boton--6');
+        let boton_7 = document.querySelector('#__boton--7');
+        let boton_8 = document.querySelector('#__boton--8');
+        let boton_9 = document.querySelector('#__boton--9');
+        let boton_0 = document.querySelector('#__boton--0');
+        let borrar  = document.querySelector('__boton--borrar');
+        let corregir = document.querySelector('__boton--corregir');
+        let multiplicar = document.querySelector('__boton--multiplicar');
+        let dividir = document.querySelector('__boton--dividir');
         let pantalla_r = document.querySelector('pantalla--arriba');
         let pantalla_o = document.querySelector('pantalla--abajo');
         
@@ -82,8 +82,26 @@
                 pantalla_r.value = calculadora.resultado;
             })
         });
+
+        document.querySelectorAll('.operador').forEach(tag =>{
+            tag.addEventListener('click', evento =>{
+                calculadora.escribirNumero(evento.target.textContent);
+                pantalla_o.value = calculadora.pantallaOperacion;
+                pantalla_r.value = calculadora.resultado;
+            })
+        });
         
         borrar.addEventListener('click', () =>{
+            borrarPantalla();
+            actualizarPantalla();
+        });
+
+        corregir.addEventListener('click', () =>{
+            retroceso();
+            actualizarPantalla();
+        });
+
+        .addEventListener('click', () =>{
             borrarPantalla();
             actualizarPantalla();
         });
