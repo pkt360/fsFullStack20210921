@@ -1,65 +1,78 @@
 class calculadora{
-    constructor(){
-        this.pantallaOperacion = '0';
+
+     calculadora(){
+        this.pantallaOperacion = 0;
         this.operacion = '+';
-        this.resultado = 0;
+        this.resultado = '0';
     }
+     
 }
-
-calcular(operador){
-    let pantallaOperacion = parseFloat(this.pantallaOperacion);
-    let resultado = parseFloat(this.resultado);
-
+         
+let calcular = function(valor){
+    let pantallaO = parseFloat(this.resultado);
+    let res = parseFloat(this.pantallaOperacion);
+    this.operacion = valor;
+    alert(pantallaO);
     switch(this.operacion){
-        case '+':
-            resultado += pantallaOperacion;
+        case '+': res += pantallaO;      
             break;
-        case '-':
-            resultado -= pantallaOperacion;
+        case '-': res -= pantallaO;
             break;
-        case '*':
-            resultado *= pantallaOperacion;
+        case '*': res *= pantallaO;
             break;
-        case '/':
-            resultado /= pantallaOperacion;
+        case '/': res /= pantallaO;
             break;
+        default: res = pantallaO;
     }
-
-    this.operador = operador;
-    this.resultado = resultado;
-    this.pantallaOperacion = '0';
+    res = res.toString();
+    this.pantallaOperacion = res;
+    this.resultado = 0;
+    
+    actualizarPantalla_R();
+    actualizarPantalla_O();
 }
 
-actualizarPantalla(){
-    pantalla_o.textContent = this.pantallaOperacion;
-    pantalla_r.textContent = this.resultado
+let actualizarPantalla_O = function(){
+    
+    document.querySelector('.pantalla--abajo').textContent = this.resultado;
 }
 
-borrarPantalla(){
+let actualizarPantalla_R = function(){
+    document.querySelector('.pantalla--arriba').textContent = this.pantallaOperacion;
+}
+
+let borrarPantalla = function(){
     this.pantallaOperacion = 0;
     this.resultado = 0;
+    actualizarPantalla_O(); 
+    actualizarPantalla_R();
 }
 
-retroceso(){
-    if(this.pantallaOperacion.length > 1 && this.pantallaOperacion != 0){
-        this.pantallaOperacion = this.pantallaOperacion.substring(0, this.pantallaOperacion.length -1);
+let corregir = function(){
+    if(this.resultado.length > 1 && this.resultado != 0){
+        this.resultado = this.resultado.substring(0, this.resultado.length -1);
     }
+    actualizarPantalla_O();
+    actualizarPantalla_R();
 }
 
-escribirNumero(evento){
-    if(this.pantallaOperacion == 0){
-        this.pantallaOperacion = evento.target.value;
-    }else{
-        this.pantallaOperacion += evento.target.value;
-    }
-    actualizarPantalla();
+let escribirNumero = function(valor){
+        let r = valor.replace("undefined", "");
+        if (r === '0'){
+           this.resultado = r;
+        }
+        else{
+            this.resultado += r;
+        }
+        
+        this.resultado += r; 
+    actualizarPantalla_O();
+    actualizarPantalla_R();
 }
 
 
-mostrarOperacion(n){
-    
-}
-
-mostraResultado(){
+let mostraResultado = function(){
 
 }
+
+
