@@ -7,6 +7,8 @@ class calculadora {
   }
 }
 
+  calculadora;
+
 let calcular = function (valor) {
     //let r = this.resultado.length();
   if (this.contadorOperacion < 1) {
