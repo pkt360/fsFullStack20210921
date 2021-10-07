@@ -28,6 +28,14 @@
     width: 90px;
     height: 150px;
 }
+
+
+a {
+    text-decoration: none;
+}
+
+
+
 /*
 .flex-container{
     display: flex;

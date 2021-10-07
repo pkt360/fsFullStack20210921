@@ -1,0 +1,30 @@
+<h1>Hola {{Nombre}}</h1>
+
+<p>
+  <input type="text" [(ngModel)]="Nombre") />
+  <input type = "button" value="saluda" (click="saluda()") />
+  <input type = "button" value="despide" (click="despide()") />
+  <input type = "button" value="di algo" (click="di('algo')") />
+  <input type = "button" value="cambia" (click="cambia()") />
+
+  <p[textContent]="resultado">Esto se pierde</p>
+  <p[innerHTML]="resultado" >Esto se pierde</p>
+
+  <p [hidden] = " | visible">Ahora me ves</p>
+  <p *ngIf="visible">Ahora existo</p>
+
+  <p [ngClass]="estetica">
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat, tempora! Delectus minus et, excepturi numquam blanditiis quibusdam eum amet a minima magnam aut doloribus quidem earum architecto magni, at porro!
+  </p>
+  <p [class.casioculto]="|visible">Ahora me ves</p>
+
+  <p>Calcula 2 +2 = {{2+2}} = {{calcula(2+2)}}</p>
+
+  <ul>
+    <li *ngFor="let item of listado; let indice=index; let fondo=odd;"
+    [style.background-color]="fondo ? 'LightBlue' : 'Lavender'">
+    {{tiem.nombre}} ({{item.id}}) [Elemento {{indice + 1}}] de {{listado.length}}
+    </li>
+
+  </ul>
+

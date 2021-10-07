@@ -11,23 +11,23 @@ xdescribe('Ejercicio_2', () =>{
 
 xdescribe('Ejercicio_3', () =>{
     it('Array', () =>{
-        
+        expect(ejercicio_3(caso)).
     });
 })
 
 xdescribe('Ejercicio_4', () =>{
-    it('Primo', () =>{
+    it('Array', () =>{
         expect(ejercicio_3(caso)).
     });
 })
 
 xdescribe('Ejercicio_5', () =>{
-    it('Valida', () =>{
+    it('Array', () =>{
         expect(ejercicio_3(caso)).
     });
 })
 
-describe('Ejercicio_6', () =>{
+xdescribe('Ejercicio_6', () =>{
     it('palindromOk', () =>{
         let caso = 'ana';
         expect(validarPalindromo(caso)).toBeTrue();

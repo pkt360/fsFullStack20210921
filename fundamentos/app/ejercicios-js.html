@@ -1,14 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ejercicios JS</title>
 </head>
-<body>
-    
 
-    <script type="text/javascript" src="./js/ejercicios-js.js"></script>
+<body>
+    <h1>Mira la consola</h1>
+
+    <script src="js/ejercicios-js.js"></script>
+    <script>
+        // console.log(aleatorio(1, 100))
+        // JuegoDelNumero();
+
+        var juego = new Juego(10, 100);
+        // var juego = new JuegoConClase(10, 100);
+        do {
+            do {
+                var numeroLeido = prompt(`Dame tu número ${juego.intentos + 1} de ${juego.DameMaxIntentos()}:`);
+                if (numeroLeido === null)
+                    break;
+                if (isNaN(parseInt(numeroLeido))) {
+                    alert('No es un número valido');
+                    continue;
+                }
+                try {
+                    juego.PruebaCon(+numeroLeido);
+                } catch (error) {
+                    alert('ERROR: ' + error.message + '\n' + juego.mensaje)
+                    break;
+                }
+                alert(juego.mensaje);
+            } while (juego.intentos < 10 && !juego.encontrado);
+            if (!confirm('¿Otra?'))
+                break;
+            juego.Inicializa();
+        } while (true);
+    </script>
 </body>
+
 </html>
