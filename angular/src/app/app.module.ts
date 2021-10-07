@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,7 @@ import { MainModule } from './main';
 
 import { CommonServicesModule } from './common-services';
 import { SecurityModule } from './security';
+import { FormularioComponent } from './formulario/formulario.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SecurityModule } from './security';
     DemosComponent,
     DinamicoComponent,
     CalculadoraComponent,
+    FormularioComponent,
 
   ],
   imports: [
@@ -27,6 +29,8 @@ import { SecurityModule } from './security';
   ],
   providers: [
     LoggerService,
+
+    { provide: LOCALE_ID, useValue: 'es-ES'}
   ],
   bootstrap: [AppComponent]
 })

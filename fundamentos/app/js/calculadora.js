@@ -7,7 +7,7 @@ class calculadora {
   }
 }
 
-  calculadora;
+ 
 
 let calcular = function (valor) {
     //let r = this.resultado.length();

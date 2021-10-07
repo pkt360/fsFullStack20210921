@@ -23,9 +23,12 @@ export class Notification {
 
 }
 
-@Injectable()
-// Me da error si lo activo: ProvidedIn: 'root' }
+@Injectable({
+  providedIn: 'root'
+})
+
 export class NotificationService {
+  public readonly NotificationType = NotificationType;
   private listado: Array<Notification> = [];
   private notificacion$ = new Subject<Notification>();
 
