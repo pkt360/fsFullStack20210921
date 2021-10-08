@@ -111,7 +111,7 @@ export class EqualValidator implements Validator {
   providers: [{ provide: NG_VALIDATORS, useExisting: MayorQueValidator, multi: true }]
 })
 export class MayorQueValidator implements Validator {
-  @Input('mayorQue') validateMayorQue: number | null;
+  @Input('mayorQue') validateMayorQue: string | null | undefined; //Sé que tengo que cambiar el valor a number, pero tengo que crear una interfaz específica
 
   validate(control: AbstractControl): ValidationErrors | null {
     if (!control.value) return null;

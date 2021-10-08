@@ -1,0 +1,3 @@
+He subido sólo  el archivo validador porque me bajé tu repositorio entero para poder trabajar, ya que iba muy retrasado en mi formulario y
+de seguir con el formulario, iba a trabajar muy tarde con los validadores y no quería hacer un commit entero para sobreescribir mi trabajo con el tuyo,
+seguiré trabajando este fin de semana por donde me quedé.
