@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { NotificationService, NotificationType } from '../common-services';
@@ -19,7 +20,7 @@ export class PersonasViewModel {
   Elemento: Persona = { id: null, nombre: '', apellidos: '', correo: null, edad: null, dni: null };
   IsAdd = true;
 
-  constructor(private notify: NotificationService) {
+  constructor(private notify: NotificationService, private http: HttpClient) {
 
   }
 
@@ -33,8 +34,15 @@ export class PersonasViewModel {
   }
 
   public edit() {
-    this.Elemento = this.Listado[0];
-    this.IsAdd = false;
+    this.http.get<Persona>(`http://loccalhost:4321/api/personas/${this.Elemento.id}`).subscribe(
+      data=>{
+        this.Elemento=data;
+        this.IsAdd = false;
+      },
+      err=>this.notify.add(err.message)
+    );
+    //this.Elemento = this.Listado[0];
+    //this.IsAdd = false;
   }
 
   public view() {
@@ -43,7 +51,7 @@ export class PersonasViewModel {
   }
 
   public delete() {
-
+    this.notify.add('Borrado');
   }
 
   public cancel() {
@@ -61,6 +69,7 @@ export class PersonasViewModel {
   styleUrls: ['./formulario.component.scss']
 })
 export class FormularioComponent implements OnInit {
+  test: any = {}
 
   constructor(public vm: PersonasViewModel) { }
 

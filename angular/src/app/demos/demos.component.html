@@ -1,11 +1,55 @@
+<app-card><div titulo>Esto es el titulo</div>  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur sed dolore deleniti cum eligendi laborum
+  consequuntur facere quae optio sapiente. Impedit accusamus maiores, repudiandae amet asperiores earum molestias hic
+  laudantium!</app-card>
+<div class="container theme-dark">
+  <div class="row">
+    <div class="col">
+      <calculadora [SeparadorDecimal]="','" (updated)="ponResultado('IZQ', $event)">Esto se pierde</calculadora>
+    </div>
+    <table class="col table table-striped">
+      <thead>
+        <tr>
+          <th>Nº</th>
+          <th>Calc</th>
+          <th>Resultado</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <td colspan="3">Idioma: <select [(ngModel)]="idioma">
+              <option *ngFor="let i of idiomas" [value]="i.codigo">{{i.region}}</option>
+            </select>
+          </td>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr *ngFor="let r of calculos | slice:-10">
+          <td class="text-right">{{r.pos}}</td>
+          <td>{{r.origen}}</td>
+          <td class="text-right">{{r.valor | number:'1.0-8':idioma }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="col">
+      <calculadora [init]="valCalculadora" (updated)="ponResultado('DER', $event)"></calculadora>
+    </div>
+  </div>
+  <div class="row">
+    <input type="number" [(ngModel)]="valCalculadora">
+  </div>
+</div>
+
 <h1>Hola {{Nombre | elipsis:10 | uppercase}}</h1>
 
 <p>
-  <input type="text" [(ngModel)]="Nombre" >
-  <input type="button" value="saluda" (click)="saluda()" >
-  <input type="button" value="despide" (click)="despide()" >
-  <input type="button" value="di algo" (click)="di('algo')" >
-  <input type="button" value="cambia" (click)="cambia()" >
+  <input type="text" [(ngModel)]="Nombre">
+  <input type="button" value="saluda" (click)="saluda()">
+  <input type="button" value="despide" (click)="despide()">
+  <input type="button" value="di algo" (click)="di('algo')">
+  <input type="button" value="cambia" (click)="cambia()">
+  <input type="button" value="Error" (click)="vm.add('Esto es una notificación de error')" >
+  <input type="button" value="Warn" (click)="vm.add('Esta notificación es un aviso', vm.NotificationType.warn)" >
+  <input type="button" value="Multi" (click)="vm.add('Esto es una notificación de error');vm.add('Esta notificación es un aviso', vm.NotificationType.warn);vm.add('Esta notificación es informativa', vm.NotificationType.info);vm.add('Esta notificación es un suceso', vm.NotificationType.log);" >
 </p>
 
 <p [textContent]="resultado">Esto se pierde</p>
@@ -15,7 +59,9 @@
 <p *ngIf="visible">Ahora exito</p>
 
 <p [ngClass]="estetica">
-Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur sed dolore deleniti cum eligendi laborum consequuntur facere quae optio sapiente. Impedit accusamus maiores, repudiandae amet asperiores earum molestias hic laudantium!
+  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur sed dolore deleniti cum eligendi laborum
+  consequuntur facere quae optio sapiente. Impedit accusamus maiores, repudiandae amet asperiores earum molestias hic
+  laudantium!
 </p>
 <p [class.casioculto]="!visible">Ahora me ves</p>
 
@@ -28,17 +74,17 @@ Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur sed dolore del
   </li>
 </ul>
 <p>
-  <select [(ngModel)]="idProvincia" >
+  <select [(ngModel)]="idProvincia">
     <option value="">--Elige opción--</option>
     <option *ngFor="let p of listado" [value]="p.id">{{p.nombre}}</option>
   </select>
   Selecionado: {{idProvincia}}
-  <input type="text" value="Tabarnia" #txtProvincia >
-  <input type="button" value="añadir" (click)="add(txtProvincia.value)" >
+  <input type="text" value="Tabarnia" #txtProvincia>
+  <input type="button" value="añadir" (click)="add(txtProvincia.value)">
 </p>
 
 <my-sizer [(size)]="fontSize"></my-sizer>
-<input type="number" min="8" max="40" [(ngModel)]="fontSize" >
+<input type="number" min="8" max="40" [(ngModel)]="fontSize">
 <p [style.font-size.px]="fontSize">
   {{listado | json}}
 </p>

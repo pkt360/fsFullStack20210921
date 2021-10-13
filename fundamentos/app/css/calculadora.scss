@@ -1,137 +1,135 @@
-@use "sass:list";
-@use "variables" as *;
-
-
-html{
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
+html {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
 }
 
-body{
-    width: 100%;
-    height: 100%;
-
+body {
+  width: 100%;
+  height: 100%;
 }
 
-main{
-    width: 100%;
-    height: 100%;
+main {
+  width: 100%;
+  height: 100%;
 }
 
-.titulo{
-    display: inline-block;
+.titulo {
+  display: inline-block;
 }
 
-.marco--principal{
-    width: 100%;
-    height: 100%;
-    text-align: center;
-
-    .marco--secundario{
-        clear: left;
-        width: 50%;
-        height: 75%;
-        margin-top: 5%;
-        margin: 0px auto;
-    }
+.marco--principal {
+  width: 100%;
+  height: 100%;
+  text-align: center;
 }
 
-.calculadora{
-    border: 2px solid black;
-    border-radius: 10px;
-    background-color: rgb(7, 11, 248);
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    padding-bottom: 5%;
+.marco--principal .marco--secundario {
+  clear: left;
+  width: 50%;
+  height: 75%;
+  margin-top: 5%;
+  margin: 0px auto;
 }
 
-.pantalla{
-    border: 2px solid black;
-    background-color: white;
-    width: 90%;
-    height: 30%;
-    margin: auto;
-    margin-top: 2.5%;
-    margin-bottom: 5%;
-
+.calculadora {
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: rgba(2, 2, 2, 0.966);
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding-bottom: 5%;
 }
 
-.pantalla-arriba{
-
-    width: 100%;
-    height: 50%;
-
-    .pantalla--arriba {
-        width:  100%;
-        height: 100%;
-        border-bottom: 1px solid black;
-        float:right;
-        text-align: right;
-        color:red;
-      }
+.pantalla {
+  border: 2px solid black;
+  background-color: rgba(255, 255, 255, 0.664);
+  width: 90%;
+  height: 30%;
+  margin: auto;
+  margin-top: 2.5%;
+  margin-bottom: 5%;
 }
 
-.pantalla-abajo{
-
-    width: 100%;
-    height: 50%;
-}
-    .pantalla--abajo {
-        display: block;
-        width: 100%;
-        height: 100%;
-        border-bottom: 1px solid;
-        text-align: right;
-        color:rgb(7, 11, 248);
-        font-size: 2.2em;
-  }
-
-
-.teclado{
-    width: 100%;
-    height: 65%;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    .operador, .borrar {
-        color: red;
-    }
-    .boton--resultado{
-        font-size: 2em;
-
-    }
-    .tecla--resultado{
-        width: 38%;
-        height: 18%;
-    }
+.pantalla-arriba {
+  width: 100%;
+  height: 50%;
 }
 
-.tecla{
-    width: 18%;
-    height: 18%;
-    padding: 1.5px;
-    box-shadow: 1px 1px 1px 1px;
-    input:hover{
-        background-color: rgb(204, 212, 216);
-        font-size: 1.5em;
-        color:rgb(0, 0, 0);
-        width: 98.5%;
-        height: 98.5%;
-    }
-
+.pantalla-arriba .pantalla--arriba {
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid black;
+  float: right;
+  text-align: right;
+  color: red;
+  font-size: 2.4em;
 }
 
-input{
-    width: 100%;
-    height: 100%;
-    font-size: 1.6em;
+.pantalla-abajo {
+  width: 100%;
+  height: 50%;
 }
 
+.pantalla--abajo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid;
+  text-align: right;
+  color: #ececf1;
+  font-size: 2.8em;
+  overflow: hidden;
+}
+
+.teclado {
+  width: 100%;
+  height: 65%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.teclado .operador, .teclado .borrar {
+  color: red;
+}
+
+.teclado .boton--resultado {
+  font-size: 2em;
+}
+
+.teclado .tecla--resultado {
+  width: 38%;
+  height: 18%;
+}
+
+.tecla {
+  width: 18%;
+  height: 18%;
+  padding: 1.5px;
+  box-shadow: 1px 1px 1px 1px;
+}
+
+.tecla input:hover {
+  background-color: #a3a7a8;
+  font-size: 1.5em;
+  color: black;
+  width: 98.5%;
+  height: 98.5%;
+}
+
+input {
+  width: 100%;
+  height: 100%;
+  font-size: 1.6em;
+}
+
+/*# sourceMappingURL=calculadora.css.map */
+/*# sourceMappingURL=calculadora.scss.map */
 /*# sourceMappingURL=calculadora.css.map */
 
 /*# sourceMappingURL=calculadora.scss.map */

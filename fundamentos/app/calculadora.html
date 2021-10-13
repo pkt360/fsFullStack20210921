@@ -132,32 +132,32 @@
           let pantalla_r = document.querySelector('.pantalla--arriba');
           let pantalla_o = document.querySelector('.pantalla--abajo');
           
-          let Calculadora = new calcular();
-            
-
+        calculadora = new Calculadora();
+        calculadora.constructor;
+        
             numero.forEach(tag =>{
               tag.addEventListener('click', ev =>{         
-                escribirNumero(ev.target.value); 
+                calculadora.escribirNumero(ev.target.value); 
               })
           })
                       
             operacion.forEach(tag =>{
               tag.addEventListener('click', ev =>{
-                  calcular(ev.target.value);   
+                calculadora.calcular(ev.target.value);   
               })
           })
           
           borrar.addEventListener('click', () =>{
-              borrarPantalla();             
+            calculadora.borrarPantalla();             
           })
 
           
           retroceso.addEventListener('click', () =>{
-              corregir();
+            corregir();
           })
 
           coma.addEventListener('click', () =>{
-              actualizarPantalla_R();
+            actualizarPantalla_R();
           })
 
         /*  
@@ -169,7 +169,7 @@
           })
 
           */
-        })();
+        })()
 
     </script>
   </body>

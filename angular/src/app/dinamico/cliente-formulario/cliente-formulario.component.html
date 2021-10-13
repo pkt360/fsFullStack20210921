@@ -1,0 +1,71 @@
+<form #miForm="ngForm">
+  <div class="row">
+    <div class="col-md-2">
+      <label class="form-label" for="customer_id">Código</label>
+      <input type="number" class="form-control" [class.is-invalid]="customer_id.invalid" id="customer_id"
+        name="customer_id" [(ngModel)]="vm.Elemento.customer_id" #customer_id="ngModel" placeholder="Código del usuario"
+        required>
+      <app-show-errors-messages [errors]="customer_id.errors"></app-show-errors-messages>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label" for="store_id">Tienda</label>
+      <select id="store_id" class="form-select" name="store_id" [(ngModel)]="vm.Elemento.store_id" #store_id="ngModel">
+        <option value="1">Tienda 1</option>
+        <option value="2">Tienda 2</option>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label" for="first_name">Nombre</label>
+      <input type="text" class="form-control" [class.is-invalid]="first_name.invalid" id="first_name" name="first_name"
+        [(ngModel)]="vm.Elemento.first_name" #first_name="ngModel" required minlength="2" maxlength="50">
+      <app-show-errors-messages [errors]="first_name.errors"></app-show-errors-messages>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label" for="last_name">Apellidos</label>
+      <input type="text" class="form-control" [class.is-invalid]="last_name.invalid" id="last_name" name="last_name"
+        [(ngModel)]="vm.Elemento.last_name" #last_name="ngModel" minlength="2" maxlength="50">
+      <app-show-errors-messages [errors]="last_name.errors"></app-show-errors-messages>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label" for="email">Correo</label>
+      <input type="email" class="form-control" [class.is-invalid]="email.invalid" id="email" name="email"
+        [(ngModel)]="vm.Elemento.email" #email="ngModel" placeholder="Correo electrónico" required email minlength="3">
+      <app-show-errors-messages [errors]="email.errors"></app-show-errors-messages>
+    </div>
+    <fieldset class="col-md-3">
+      <legend class="form-label" for="address_id">Dirección</legend>
+      <div class="form-check form-check-inline">
+        <input type="radio" class="form-check-input" id="address_id1" name="address_id"
+          [(ngModel)]="vm.Elemento.address_id" checked value="1">
+        <label class="form-check-label" for="address_id1">Casa</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input type="radio" class="form-check-input" id="address_id2" name="address_id"
+          [(ngModel)]="vm.Elemento.address_id" checked value="2">
+        <label class="form-check-label" for="address_id2">Trabajo</label>
+      </div>
+    </fieldset>
+    <div class="col-md-3">
+      <label class="form-label" for="create_date">F. Creación</label>
+      <input type="date" class="form-control" [class.is-invalid]="create_date.invalid" id="create_date"
+        name="create_date" [(ngModel)]="vm.Elemento.create_date" #create_date="ngModel">
+      <app-show-errors-messages [errors]="create_date.errors"></app-show-errors-messages>
+    </div>
+    <div class="col-md-3">
+      <label class="form-label" for="last_update">Última modificacion</label>
+      <input type="date" class="form-control" [class.is-invalid]="last_update.invalid" id="last_update"
+        name="last_update" [(ngModel)]="vm.Elemento.last_update" #last_update="ngModel" min="2021-11-01">
+      <app-show-errors-messages [errors]="last_update.errors"></app-show-errors-messages>
+    </div>
+    <div class="col-md-3 form-check form-switch">
+      <div class="position-relative top-50 start-100 translate-middle">
+        <input type="checkbox" class="form-check-input" id="active" name="active" [(ngModel)]="vm.Elemento.active"
+          value="true" checked>
+        <label class="form-check-label" for="active">Activo</label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <app-form-buttons (send)="vm.send()" [send-disabled]="miForm.invalid" (cancel)="vm.cancel()" (delete)="vm.delete()"></app-form-buttons>
+  </div>
+</form>

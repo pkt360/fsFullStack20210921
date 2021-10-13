@@ -11,4 +11,5 @@ export class NotificationModalComponent {
   constructor(private vm: NotificationService) { }
 
   public get VM() { return this.vm; }
+
 }

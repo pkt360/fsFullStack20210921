@@ -7,15 +7,16 @@ import { NotificationModalComponent } from './notification-modal/notification-mo
 
 
 
-
 @NgModule({
   declarations: [
     HomeComponent,
     NotificationComponent,
     NotificationModalComponent,
   ],
-  exports:[
-    HomeComponent, NotificationComponent, NotificationModalComponent,
+  exports: [
+    HomeComponent,
+    NotificationComponent,
+    NotificationModalComponent,
   ],
   imports: [
     CommonModule, CommonServicesModule,
@@ -24,8 +25,8 @@ import { NotificationModalComponent } from './notification-modal/notification-mo
 export class MainModule {
   constructor( @Optional() @SkipSelf() parentModule: MainModule) {
     if (parentModule) {
-      const msg = `ModuleName has already been loaded.
-        Import ModuleName once, only, in the root AppModule.`;
+      const msg = `MainModule has already been loaded.
+        Import MainModule once, only, in the root AppModule.`;
       throw new Error(msg);
     }
   }

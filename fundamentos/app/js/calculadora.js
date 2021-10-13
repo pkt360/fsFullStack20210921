@@ -1,28 +1,34 @@
-class calculadora {
-  calculadora() {
-    this.pantallaOperacion = "";
-    this.operacion = "+";
-    this.resultado = "0";
+class Calculadora{
+  constructor(){
+    this.pantalla_Operacion = "";
+    this.operador = "+";
+    this.pantalla_Resultado = "0";
     this.contadorOperacion = 0;
+    this.cacheOperacion = 0;  
+    this.actualizarPantalla_R(this.pantalla_Resultado);
+    this.actualizarPantalla_O(this.pantalla_Operacion);
   }
-}
 
- calculadora;
+ calcular(valor) {
+    this.contadorOperacion+=1;
+    if (this.contadorOperacion < 2){
+      this.cacheOperacion += parseFloat(this.pantalla_Resultado);
+      this.pantalla_Operacion =  this.cacheOperacion + this.operador;
+      
+      
+      this.pantalla_Resultado = '0';
+      this.actualizarPantalla_R(this.pantalla_Resultado);
+      this.actualizarPantalla_O(this.pantalla_Operacion);
+    }else{
 
-let calcular = function (valor) {
-    //let r = this.resultado.length();
-  if (this.contadorOperacion < 1) {
-    acumular(valor);
-  } else {
-    let pantallaO = parseFloat(this.resultado);
-    let res = parseFloat(this.pantallaOperacion);
-    this.operacion = valor;
-    alert("res:" + res);
-    alert(pantallaO);
+    let pantallaO = parseFloat(this.pantalla_Resultado);
+    let res = parseFloat(this.pantalla_Operacion);
+    this.operador = valor;
+   
     let cadena = "+-*/=";
-    if (cadena.indexOf(this.operacion) == -1) return;
+    if (cadena.indexOf(this.operador) == -1) return;
 
-    switch (this.operacion) {
+    switch (this.operador) {
       case "+":
         res += pantallaO;
         break;
@@ -36,69 +42,78 @@ let calcular = function (valor) {
         res /= pantallaO;
         break;
       default:
-        res = "";
+        res = this.cacheOperacion;
+        alert(res);
     }
     res = res.toString();
-    this.pantallaOperacion = res;
-    this.resultado = "0";
-    actualizarPantalla_R(this.resultado);
-    actualizarPantalla_O(this.operacion);
+    this.pantalla_Operacion = res;
+    this.pantalla_Resultado = "0";
+    this.actualizarPantalla_R(this.pantalla_Resultado);
+    this.actualizarPantalla_O(this.operador);
   }
-};
+}
 
-let acumular = function (valor) {
+acumular(valor) {
   this.contadorOperacion = this.contadorOperacion + 1;
-  pantallaOperacion = resultado;
-  actualizarPantalla_R(valor);
-};
+  this.pantalla_Operacion = this.pantalla_Resultado;
+  this.actualizarPantalla_R(valor);
+}
 
-let actualizarPantalla_O = function (valor) {
+ actualizarPantalla_O (valor) {
   document.querySelector(".pantalla--arriba").textContent = valor;
-};
+}
 
-let actualizarPantalla_R = function (valor) {
+actualizarPantalla_R (valor) {
   document.querySelector(".pantalla--abajo").textContent = valor;
-};
+}
 
-let borrarPantalla = function () {
-  this.pantallaOperacion = "";
-  this.resultado = "0";
-  actualizarPantalla_O(this.pantallaOperacion);
-  actualizarPantalla_R(resultado);
-};
+borrarPantalla () {
+  this.pantalla_Operacion = "";
+    this.operador = "+";
+    this.pantalla_Resultado = "0";
+    this.contadorOperacion = 0;
+    this.cacheOperacion = 0;  
+    this.actualizarPantalla_R(this.pantalla_Resultado);
+    this.actualizarPantalla_O(this.pantalla_Operacion);
+}
 
-let corregir = function () {
-  if (this.resultado.length > 0 && this.resultado != "0") {
-    this.resultado = this.resultado.substring(0, this.resultado.length - 1);
+corregir() {
+  if (this.pantalla_Resultado.length > 0 && this.pantalla_Resultado != "0") {
+    this.pantalla_Resultado = this.pantalla_Resultado.substring(0, this.pantalla_Resultado.length - 1);
   }
-  actualizarPantalla_O(this.pantallaOperacion);
-  actualizarPantalla_R(resultado);
-};
+  this.actualizarPantalla_O(this.pantalla_Operacion);
+  this.actualizarPantalla_R(this.pantalla_Resultado);
+}
 
-let escribirNumero = function (valor) {
-  if (this.contadorOperacion > 0) {
-    calcular();
-  } else {
+escribirNumero(valor) {
+  
     if (valor < "0" || valor > "9") {
       return;
     }
-    if (valor === "0" && this.resultado === "0") {
-      this.resultado = valor;
-    } else if (this.resultado === undefined) {
-      this.resultado = valor;
-    } else {
-      this.resultado += valor;
+    if (this.pantalla_Resultado === "0") {
+      this.pantalla_Resultado = valor;
+    } else if (this.pantalla_Resultado === undefined) {
+      this.pantalla_Resultado = valor;
+    } else if (this.pantalla_Resultado.indexOf("+" || "-" || "*" || "/") == 0){
+      this.pantalla_Resultado = this.pantalla_Resultado.substring(1, this.pantalla_Resultado.length);
+      this.pantalla_Resultado += valor;
+    }else{
+      this.pantalla_Resultado += valor;
     }
-  }
-  actualizarPantalla_O(this.pantallaOperacion);
-  actualizarPantalla_R(this.resultado);
-};
+  
+  this.actualizarPantalla_O(this.pantalla_Operacion);
+  this.actualizarPantalla_R(this.pantalla_Resultado);
+}
 
-let escribirComa = function (valor) {
-  if (resultado.indexOf(".") === -1) {
-    resultado += ".";
+escribirComa () {
+  if (this.pantalla_Resultado.indexOf(".") === -1) {
+    this.pantalla_Resultado += ".";
   }
-  actualizarPantalla_R(this.resultado);
-};
+  this.actualizarPantalla_R(this.pantalla_Resultado);
+}
 
-let mostraResultado = function () {};
+resultado(){
+
+}
+
+}
