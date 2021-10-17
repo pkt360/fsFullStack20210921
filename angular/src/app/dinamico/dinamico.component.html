@@ -11,10 +11,12 @@
             type="button" (click)="seleccionar(indice)" ><i [class]="item.icono"></i> {{item.texto}}</button>
         </li>
       </ul>
+     <!-- <app-login></app-login>  -->
     </div>
   </div>
 </nav>
 <app-notification-modal></app-notification-modal>
+<app-ajax-wait></app-ajax-wait>
 <main class="container-fluid">
   <ng-container *ngComponentOutlet="actual"></ng-container>
 </main>

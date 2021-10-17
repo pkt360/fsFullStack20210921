@@ -19,7 +19,7 @@ export class WindowConfirmDirective {
 @Directive({ selector: '[show]' })
 export class ShowDirective {
   @HostBinding('hidden') hidden: boolean = false;
-  @Input('show') set show(value: boolean) { this.hidden = !value; }
+  @Input() set show(value: boolean) { this.hidden = !value; }
 }
 
 @Directive({ selector: '[myShowErrors]' })

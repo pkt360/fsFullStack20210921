@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { NotificationService } from '../common-services';
 import { LoggerService } from 'src/lib/my-core';
+import { Router } from '@angular/router';
 
 export type ModoCRUD = 'list' | 'add' | 'edit' | 'view' | 'delete';
 
@@ -51,13 +52,15 @@ export class ContactosViewModelService {
   constructor(
     protected notify: NotificationService,
     protected out: LoggerService,
-    protected dao: ContactosDAOService
+    protected dao: ContactosDAOService,
+    protected router: Router
   ) {}
 
   protected modo: ModoCRUD = 'list';
   protected listado: Array<any> = [];
   protected elemento: any = {};
   protected idOriginal: any = null;
+  protected listURL:any = [];
 
   public get Modo(): ModoCRUD {
     return this.modo;
@@ -119,7 +122,8 @@ export class ContactosViewModelService {
   public cancel(): void {
     this.elemento = {};
     this.idOriginal = null;
-    this.list();
+    // this.list();
+    this.router.navigateByUrl(this.listURL);
   }
 
   public send(): void {

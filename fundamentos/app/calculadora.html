@@ -111,7 +111,7 @@
               </div>
 
               <div class="tecla--resultado">
-                <input type="button" value="=" class="operador" />
+                <input type="button" value="=" class="resultado" />
               </div>
             </div>
           </div>
@@ -128,6 +128,7 @@
           let coma = document.querySelector('#coma');
           let borrar  = document.querySelector('#boton--borrar');
           let retroceso = document.querySelector('#boton--corregir');
+          let igual = document.querySelector('.resultado');
           
           let pantalla_r = document.querySelector('.pantalla--arriba');
           let pantalla_o = document.querySelector('.pantalla--abajo');
@@ -135,16 +136,20 @@
         calculadora = new Calculadora();
         calculadora.constructor;
         
-            numero.forEach(tag =>{
+          numero.forEach(tag =>{
               tag.addEventListener('click', ev =>{         
                 calculadora.escribirNumero(ev.target.value); 
               })
           })
                       
-            operacion.forEach(tag =>{
+          operacion.forEach(tag =>{
               tag.addEventListener('click', ev =>{
                 calculadora.calcular(ev.target.value);   
               })
+          })
+
+          igual.addEventListener('click', () =>{
+            calculadora.resultado();             
           })
           
           borrar.addEventListener('click', () =>{
@@ -153,23 +158,15 @@
 
           
           retroceso.addEventListener('click', () =>{
-            corregir();
+            calculadora.corregir();
           })
 
           coma.addEventListener('click', () =>{
-            actualizarPantalla_R();
+            calculadora.escribirComa();
           })
 
-        /*  
-          document.querySelectorAll(".numero").forEach(tag =>{
-          tag.addEventListener('click', ev =>{
-            alert(ev); 
-          })
-            
-          })
-
-          */
-        })()
+      
+        })();
 
     </script>
   </body>

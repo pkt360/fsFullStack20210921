@@ -50,9 +50,9 @@
   </div>
   <fieldset>
     <legend>Comparaciones</legend>
-    <input type="number" name="origen" [(ngModel)]="test.origen" #origen="ngModel">
+    <input type="date" name="origen" [(ngModel)]="test.origen" #origen="ngModel">
     <output class="error" [myShowErrors]="origen.errors"></output>
-    <input type="number" name="destino" [(ngModel)]="test.destino" #destino="ngModel" lessThan="origen" exclude-start="2" exclude-end="8">
+    <input type="date" name="destino" [(ngModel)]="test.destino" #destino="ngModel" greaterThan="origen" greaterThanMessage="La fecha de inicio ...">
     <output class="error" [myShowErrors]="destino.errors"></output>
     {{destino.errors | json}}
   </fieldset>
