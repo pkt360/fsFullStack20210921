@@ -7,6 +7,7 @@ class Calculadora{
     this.Operacion_abajo = 0; 
     this.actualizarPantalla();
     this.contadorRes = false
+    this.contadorOp = false;
   }
 
   actualizarPantalla () {
@@ -15,36 +16,42 @@ class Calculadora{
   }
 
   calcular(valor) {
-    this.operador = valor;
-    let cadena = "+-*/"; 
-    if (cadena.indexOf(this.operador) == -1) return;
     
-    switch (this.operador) {
-      case "+":
-        this.Operacion_arriba += this.Operacion_abajo;              
-      break;
-      case "-":
-        this.Operacion_arriba -= this.Operacion_abajo;
-      break;
-      case "*":
-        this.Operacion_arriba *= this.Operacion_abajo;
-      break;
-      case "/":
-        this.Operacion_arriba /= this.Operacion_abajo;
-      break;
-    }
-    if (this.contadorRes === false){
-      this.pantalla_Arriba = this.Operacion_arriba.toString() + this.operador;
-    }else{
-      this.pantalla_Arriba = this.Operacion_arriba.toString();
-    }
-     
-    this.pantalla_Abajo = "0";
-    this.Operacion_abajo = 0;
-    this.contadorRes = false;
-    this.actualizarPantalla();
-}
+    this.operador = valor;
+    let cadena = "+-x/"; 
 
+    if (cadena.indexOf(this.operador) == -1) return;
+    if (this.contadorOp === false){ 
+      this.Operacion_arriba = this.Operacion_abajo;
+    }else{ 
+      switch (this.operador) {
+        case "+":
+          this.Operacion_arriba += this.Operacion_abajo;              
+        break;
+        case "-":
+          this.Operacion_arriba -= this.Operacion_abajo;
+        break;
+        case "x":
+          this.Operacion_arriba *= this.Operacion_abajo;
+        break;
+        case "/":
+          this.Operacion_arriba /= this.Operacion_abajo;
+        break;
+      }
+    }
+      if (this.contadorRes === false){
+        this.pantalla_Arriba = this.Operacion_arriba.toString() + this.operador;
+      }else{
+        this.pantalla_Arriba = this.Operacion_arriba.toString();
+      }
+    
+    this.operador = valor;
+    this.pantalla_Abajo = "0";
+    this.contadorRes = false;
+    this.contadorOp = true;
+    this.actualizarPantalla();
+    
+  }
 
 borrarPantalla () {
   this.pantalla_Arriba = "";
@@ -52,6 +59,8 @@ borrarPantalla () {
     this.pantalla_Abajo = "0";
     this.Operacion_arriba = 0;
     this.Operacion_abajo = 0;
+    this.contadorRes = false
+    this.contadorOp = false;
     this.actualizarPantalla();
 }
 
