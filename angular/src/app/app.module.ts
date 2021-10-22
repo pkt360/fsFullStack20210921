@@ -23,6 +23,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ContactosModule } from './contactos';
 import { LibrosModule } from './libros';
 import { AuthInterceptor } from './security/services/serguridad.service';
+import { BlogModule } from './blog';
 
 
 
@@ -41,6 +42,7 @@ import { AuthInterceptor } from './security/services/serguridad.service';
     BrowserModule, FormsModule, HttpClientModule,
     AppRoutingModule, MyCoreModule, MainModule, CommonServicesModule, CommonComponentModule,
     SecurityModule, ContactosModule, MyCoreModule, CommonServicesModule, SecurityModule, ContactosModule, LibrosModule,
+    BlogModule
   ],
   providers: [
     LoggerService,
