@@ -10,12 +10,15 @@ import { VALIDATORS_CROSS_INPUT } from './directives/validadores/cross-field.dir
 
 
 
+
 @NgModule({
   declarations: [
-    SizerComponent, PIPES_CADENAS, DIRECTIVAS_ATRIBUTO, UnlessDirective, MIS_VALIDADORES, VALIDATORS_DATES, VALIDATORS_CROSS_INPUT,
+    SizerComponent, PIPES_CADENAS, DIRECTIVAS_ATRIBUTO, UnlessDirective,
+     MIS_VALIDADORES, VALIDATORS_DATES, VALIDATORS_CROSS_INPUT,
   ],
   exports: [
-    SizerComponent, PIPES_CADENAS, DIRECTIVAS_ATRIBUTO, UnlessDirective, MIS_VALIDADORES, VALIDATORS_DATES, VALIDATORS_CROSS_INPUT,
+    SizerComponent, PIPES_CADENAS, DIRECTIVAS_ATRIBUTO, UnlessDirective,
+     MIS_VALIDADORES, VALIDATORS_DATES, VALIDATORS_CROSS_INPUT,
   ],
   imports: [
     CommonModule

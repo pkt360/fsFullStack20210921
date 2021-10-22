@@ -22,6 +22,7 @@ import { ClienteFormularioComponent } from './cliente-formulario/cliente-formula
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ContactosModule } from './contactos';
 import { LibrosModule } from './libros';
+import { AuthInterceptor } from './security/services/serguridad.service';
 
 
 
@@ -33,6 +34,7 @@ import { LibrosModule } from './libros';
     CalculadoraComponent,
     FormularioComponent,
     ClienteFormularioComponent,
+
 
   ],
   imports: [
@@ -46,6 +48,7 @@ import { LibrosModule } from './libros';
     { provide: ERROR_LEVEL, useValue: environment.ERROR_LEVEL },
     { provide: LOCALE_ID, useValue: 'es-ES'},
     { provide: HTTP_INTERCEPTORS, useClass: AjaxWaitInterceptor, multi: true, },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true,},
 
   ],
   bootstrap: [AppComponent]

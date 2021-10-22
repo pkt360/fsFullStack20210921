@@ -4,12 +4,15 @@ import { LibrosComponent } from './libros';
 import { ContactosAddComponent, ContactosComponent, ContactosEditComponent, ContactosListComponent, ContactosViewComponent } from './contactos/componente.component';
 import { DemosComponent } from './demos/demos.component';
 import { HomeComponent, PageNotFoundComponent } from './main';
+import { LibrosAddComponent } from './libros/componente.component';
+import { AuthGuard } from './security/services/serguridad.service';
+import { BlogListComponent, BlogAddComponent, BlogEditComponent, BlogViewComponent } from './blog/componente.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', component: HomeComponent},
-  {path: 'inicio', component: HomeComponent},
-  {path: 'demos', component: DemosComponent},
-  {path: 'chisme/de/hacer/numeros', component: DemosComponent},
+  {path: 'inicio', component: HomeComponent, data: {pageTitle: 'Inicio'}},
+  {path: 'demos', component: DemosComponent, data: {pageTitle: 'Demos'}},
+  {path: 'chisme/de/hacer/numeros', component: DemosComponent, data: {pageTitle: 'Calculadora'}},
   { path: 'contactos', children: [
     { path: '', component: ContactosListComponent},
     { path: 'add', component: ContactosAddComponent},
@@ -24,7 +27,12 @@ const routes: Routes = [
     { path: ':id', component: LibrosComponent },
     { path: ':id/:kk', component: LibrosComponent },
   ]},
-  { path: 'antonie/hasted', redirectTo: '/contactos/27'},
+  { path: 'blog', component: BlogListComponent},
+  { path: 'blog/add', component: BlogAddComponent, canActivate: [AuthGuard]},
+  { path: 'blog/:id/edit', component: BlogEditComponent, canActivate: [AuthGuard]},
+  { path: 'blog/:id', component: BlogViewComponent},
+
+
   { path: 'config', loadChildren: () => import('./config/config.module').then(mod => mod.ConfigModule)},
   { path: '404.html', component: PageNotFoundComponent },
   { path: '**', component: PageNotFoundComponent },

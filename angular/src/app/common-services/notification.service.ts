@@ -5,8 +5,12 @@ import { LoggerService } from 'src/lib/my-core';
 export enum NotificationType { error, warn, info, log }
 
 export class Notification {
-  constructor(private id: number, private message: string,
-    private type: NotificationType) { }
+  constructor(
+    private id: number,
+    private message: string,
+    private type: NotificationType
+  ) { }
+
   public get Id() { return this.id; }
   public get Message() { return this.message; }
   public get Type() { return this.type; }

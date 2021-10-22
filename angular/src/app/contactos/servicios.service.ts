@@ -6,6 +6,7 @@ import { NotificationService } from '../common-services';
 import { LoggerService } from 'src/lib/my-core';
 import { Router } from '@angular/router';
 
+
 export type ModoCRUD = 'list' | 'add' | 'edit' | 'view' | 'delete';
 
 export abstract class RESTDAOService<T, K> {

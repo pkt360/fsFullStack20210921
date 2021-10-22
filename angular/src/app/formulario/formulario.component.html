@@ -1,7 +1,7 @@
 <div>
   <input type="button" value="add" (click)="vm.add()" >
   <input type="button" value="edit" (click)="vm.edit()" >
-  <input type="button" value="borrar" (myWinConfirm)="vm.delete()" myWinConfirmMessage="Una vez borrados ..." >
+  <input type="button" value="borrar" (myWinConfirm)="vm.delete()" myWinConfirmMessage="¿Seguro que quieres borrar?" >
 </div>
 <form #miForm="ngForm" cross-field-validation>
   <div>
