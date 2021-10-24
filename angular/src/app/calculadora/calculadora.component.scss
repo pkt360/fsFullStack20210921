@@ -1,80 +1,70 @@
 @use "sass:list";
-$sizes: 576px, 768px, 992px, 1200px;
 
-.Calculadora {
-  @mixin tamañoFont($factor: 0.3em) {
-    @for $delta from 0 to list.length($sizes) {
-      @media (min-width: list.nth($sizes, $delta + 1)) {
-        font-size: 1em + ($delta + 1) * $factor !important;
-      }
-    }
-  }
-  $fuente: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+:root{
+  --color-calculadora: rgba(0, 102, 255, 0.692);
+  --color-teclas: rgba(240, 239, 239, 0.822);
+  --color-teclas-operacion: gray;
+  --color-numeros: black;
+  --color-operacion: red;
+}
 
-  display: grid;
-  grid-gap: 5px;
-  grid-template-columns: repeat(4, 1fr);
+h1{
+  margin-top: 10px;
+}
 
-  background-color: #e6f3ff;
-  border-style: outset;
-  padding: 6px;
-  margin: 4px;
-  max-width: 100%;
-  min-width: 150px;
+.Calculadora{
+  $fuente: 16px "Comic-Sans, Arial, Helvetica";
+  width: 350px;
+  min-width: 300px;
+  height: 500px;
+  // no funciona ----> background-color: var(--color-calculadora);
+  background-color: rgba(0, 102, 255, 0.692);
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  margin-top: 30px;
+  padding: 1%;
   font: $fuente;
-
-  @for $delta from 1 to list.length($sizes) {
-    @media (min-width: list.nth($sizes, $delta + 1)) {
-      max-width: 300px + $delta * 200px;
-    }
-  }
-
-  .Pantalla {
-    grid-column: 1 / span 4;
-    background-color: #004000;
-    color: yellow;
-    border-style: inset;
-    text-align: right;
-    padding: 4px;
-    @include tamañoFont(0.5em);
-  }
-
-  .Resumen {
-    grid-column: 1 / span 4;
-    text-align: right;
-    @include tamañoFont(0.3em);
-  }
-  @mixin botones {
-    width: 100%;
-    font: $fuente;
-    @include tamañoFont;
-  }
-
-  .btnDigito {
-    color: navy;
-    @include botones;
-  }
-
-  .btnOperar {
-    color: red;
-    @include botones;
-  }
 }
 
-:host-context(.theme-dark) .Calculadora {
-  background-color: rgb(0, 0, 0) !important;
-  color: white !important;
+.Pantalla{
+  color: lightgray;
+  height: 25px;
+  width: 300px;
 }
 
-@for $i from 1 through 12 {
-  .col-#{$i} {
-    grid-column: $i;
-  }
-  @if $i < 12 {
-    @for $s from 2 through 13 - $i {
-      .col-#{$i}x#{$s} {
-        grid-column: $i #{"/"} span $s;
-      }
-    }
-  }
+.Resumen{
+  height: 25px;
+  width: 300px;
+
+}
+
+.teclado{
+  width: auto;
+  height: auto;
+}
+
+input{
+  width: 24%;
+  height: 19%;
+  font-size: 1.8em;
+  border-radius: 10px;
+  margin: 0.25%;
+}
+
+#encender, #cero{
+  width: 49%;
+
+}
+
+.botonOperar{
+  color: red;
+  font-weight: 900;
+}
+
+.botonDigito{
+  font-weight: 700;
 }

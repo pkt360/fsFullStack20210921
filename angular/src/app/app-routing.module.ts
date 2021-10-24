@@ -7,12 +7,13 @@ import { HomeComponent, PageNotFoundComponent } from './main';
 import { LibrosAddComponent } from './libros/componente.component';
 import { AuthGuard } from './security/services/serguridad.service';
 import { BlogListComponent, BlogAddComponent, BlogEditComponent, BlogViewComponent } from './blog/componente.component';
+import { CalculadoraComponent } from './calculadora/calculadora.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', component: HomeComponent},
   {path: 'inicio', component: HomeComponent, data: {pageTitle: 'Inicio'}},
   {path: 'demos', component: DemosComponent, data: {pageTitle: 'Demos'}},
-  {path: 'chisme/de/hacer/numeros', component: DemosComponent, data: {pageTitle: 'Calculadora'}},
+  {path: 'calculadora', component: CalculadoraComponent, data: {pageTitle: 'Calculadora'}},
   { path: 'contactos', children: [
     { path: '', component: ContactosListComponent},
     { path: 'add', component: ContactosAddComponent},
