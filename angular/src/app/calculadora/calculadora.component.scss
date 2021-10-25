@@ -26,8 +26,11 @@ h1{
   align-items: center;
   margin: auto;
   margin-top: 30px;
+  margin-bottom: 20px;
   padding: 1%;
   font: $fuente;
+  border-radius: 20px;
+
 }
 
 .Pantalla{
@@ -59,11 +62,12 @@ input{
   height: 19%;
   font-size: 1.8em;
   border-radius: 10px;
+  border-color: gray;
   margin: 0.25%;
 }
 
-#encender, #cero{
-  width: 49%;
+#borrar, #cero{
+  width: 48.5%;
 
 }
 
