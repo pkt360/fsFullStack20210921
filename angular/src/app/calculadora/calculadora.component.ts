@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, InjectionToken } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { LoggerService } from 'src/lib/my-core';
 import { NotificationService, NotificationType } from '../common-services';
 
@@ -112,5 +112,7 @@ export class CalculadoraComponent implements OnInit {
 
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+  }
 
 }

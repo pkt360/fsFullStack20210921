@@ -1,15 +1,16 @@
 <H1>Calculadora</H1>
 <div class="Calculadora">
-  <output class="Resumen">
-    <ng-template #Resumen>{{ Resumen }} </ng-template>
-  </output>
-  <output class="Pantalla">
-    <ng-container><ng-template #Pantalla>{{ Pantalla }} </ng-template></ng-container>
-  </output>
-
+  <div class="Pantalla">
+    <output class="Resumen">
+      {{Resumen }}
+    </output>
+    <output class="Resultado">
+      {{ Pantalla }}
+    </output>
+  </div>
 
   <div class="teclado">
-    <input class="botonOperar" id="encender" span-2 type="button" value="Encender" (click)="iniciar()" />
+    <input class="botonOperar" id="encender" span-2 type="button" value="Borrar" (click)="iniciar()" />
     <input class="botonOperar" type="button" value="C" (click)="borrar()" />
     <input class="botonOperar" type="button" value="/" (click)="calcular('/')" />
     <input class="botonDigito" type="button" value="7" (click)="ponerDigito('7')" />

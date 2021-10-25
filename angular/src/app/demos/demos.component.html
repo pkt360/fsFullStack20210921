@@ -9,7 +9,9 @@
   <input type="button" value="cambia" (click)="cambia()">
   <input type="button" value="Error" (click)="vm.add('Esto es una notificación de error')" >
   <input type="button" value="Warn" (click)="vm.add('Esta notificación es un aviso', vm.NotificationType.warn)" >
-  <input type="button" value="Multi" (click)="vm.add('Esto es una notificación de error');vm.add('Esta notificación es un aviso', vm.NotificationType.warn);vm.add('Esta notificación es informativa', vm.NotificationType.info);vm.add('Esta notificación es un suceso', vm.NotificationType.log);" >
+  <input type="button" value="Multi" (click)="vm.add('Esto es una notificación de error');
+          vm.add('Esta notificación es un aviso', vm.NotificationType.warn);vm.add('Esta notificación es informativa', vm.NotificationType.info);
+          vm.add('Esta notificación es un suceso', vm.NotificationType.log);" >
 </p>
 
 <p [textContent]="resultado">Esto se pierde</p>
