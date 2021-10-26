@@ -2,6 +2,9 @@ package com.example.domains.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -28,6 +31,7 @@ public class City implements Serializable {
 
 	//bi-directional many-to-one association to Address
 	@OneToMany(mappedBy="city")
+	
 	private List<Address> addresses;
 
 	//bi-directional many-to-one association to Country
