@@ -1,5 +1,7 @@
 package com.example.domains.services;
 
-public class LanguageServiceImpl {
+import com.example.domains.contracts.services.LanguageService;
+
+public class LanguageServiceImpl implements LanguageService{
 
 }
