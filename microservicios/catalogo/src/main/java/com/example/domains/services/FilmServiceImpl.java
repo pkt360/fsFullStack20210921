@@ -1,5 +1,6 @@
 package com.example.domains.services;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,17 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Sort;
 import com.example.domains.contracts.services.FilmService;
 import com.example.domains.entities.Actor;
 import com.example.domains.entities.Category;
 import com.example.domains.entities.Film;
+import com.example.domains.entities.Language;
 import com.example.infraestructure.repositories.FilmRepository;
 import com.example.exceptions.DuplicateKeyException;
 import com.example.exceptions.InvalidDataException;
 import com.example.exceptions.NotFoundException;
-import com.example.infraestructure.repositories.ActorRepository;
+
 
 public class FilmServiceImpl implements FilmService{
 	
@@ -60,23 +60,23 @@ public class FilmServiceImpl implements FilmService{
 	}
 
 	@Override
-	public Film add(Actor item) throws DuplicateKeyException, InvalidDataException {
+	public Film add(Film item) throws DuplicateKeyException, InvalidDataException {
 		if(item == null)
 			throw new InvalidDataException("Faltan los datos");
 		if(item.isInvalid())
 			throw new InvalidDataException(item.getErrorsString());
-		if(getOne(item.getActorId()).isPresent())
+		if(getOne(item.getFilmId()).isPresent())
 			throw new DuplicateKeyException();
 		return dao.save(item);
 	}
 
 	@Override
-	public Actor modify(Film item) throws NotFoundException, InvalidDataException {
+	public Film modify(Film item) throws NotFoundException, InvalidDataException {
 		if(item == null)
 			throw new InvalidDataException("Faltan los datos");
 		if(item.isInvalid())
 			throw new InvalidDataException(item.getErrorsString());
-		if(getOne(item.getActorId()).isEmpty())
+		if(getOne(item.getFilmId()).isEmpty())
 			throw new NotFoundException();
 		return dao.save(item);
 	}
@@ -85,11 +85,29 @@ public class FilmServiceImpl implements FilmService{
 	public void deleteById(Integer id) {
 		dao.deleteById(id);
 	}
+	
+	@Override
+	public void delete (Film item) throws InvalidDataException{
+		if (item == null) {
+			throw new InvalidDataException("Faltan datos");
+		}
+		dao.deleteById(item.getFilmId());
+	}
 
 	@Override
-	public void delete(Film item) throws InvalidDataException {
-		if(item == null)
-			throw new InvalidDataException("Faltan los datos");
-		deleteById(item.getActorId());
+	public List<Actor> getFilmActores(int id){
+		return dao.getFilmActores(id);
 	}
+	
+	@Override
+	public List<Language> getFilmLanguages(int id){
+		return dao.getFilmLanguages(id);
+	}
+	
+	@Override
+	public List<Category> getFilmCategorias(int id){
+		return dao.getFilmCategorias(id);
+	}
+	
+	
 }

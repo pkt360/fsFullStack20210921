@@ -5,9 +5,11 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 
 import com.example.domains.contracts.services.CategoryService;
 import com.example.domains.entities.Category;
+import com.example.domains.entities.Film;
 import com.example.exceptions.DuplicateKeyException;
 import com.example.exceptions.InvalidDataException;
 import com.example.exceptions.NotFoundException;
@@ -20,7 +22,7 @@ public class CategoryServiceImpl implements CategoryService {
 	
 	@Override
 	public List<Category> getAll() {
-		return dao.findAll();
+		return dao.findAll(Sort.by("name"));
 	}
 
 	@Override
@@ -28,17 +30,7 @@ public class CategoryServiceImpl implements CategoryService {
 		return dao.findById(id);
 	}
 
-	@Override
-	public Category add(Category item) throws DuplicateKeyException, InvalidDataException {
-		if(item == null)
-			throw new InvalidDataException("Faltan los datos");
-		if(item.isInvalid())
-			throw new InvalidDataException(item.getErrorsString());
-		if(getOne(item.getCategoryId()).isPresent())
-			throw new DuplicateKeyException();
-		return dao.save(item);
-	}
-
+	
 	@Override
 	public Category modify(Category item) throws NotFoundException, InvalidDataException {
 		if(item == null)
@@ -47,6 +39,17 @@ public class CategoryServiceImpl implements CategoryService {
 			throw new InvalidDataException(item.getErrorsString());
 		if(getOne(item.getCategoryId()).isEmpty())
 			throw new NotFoundException();
+		return dao.save(item);
+	}
+	
+	@Override
+	public Category add(Category item) throws DuplicateKeyException, InvalidDataException {
+		if(item == null)
+			throw new InvalidDataException("Faltan los datos");
+		if(item.isInvalid())
+			throw new InvalidDataException(item.getErrorsString());
+		if(getOne(item.getCategoryId()).isPresent())
+			throw new DuplicateKeyException();
 		return dao.save(item);
 	}
 
@@ -61,5 +64,9 @@ public class CategoryServiceImpl implements CategoryService {
 			throw new InvalidDataException("Faltan los datos");
 		deleteById(item.getCategoryId());
 	}
-
+	
+	@Override
+	public List<Film> getFilmCategories(int id){
+		return dao.getFilmCategories(id);
+	}
 }

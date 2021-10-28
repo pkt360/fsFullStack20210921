@@ -8,6 +8,7 @@ import javax.validation.constraints.PastOrPresent;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.context.event.EventPublicationInterceptor;
 
 import com.example.domains.core.EntityBase;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -57,6 +58,12 @@ public class Category extends EntityBase<Category> implements Serializable {
 		super();
 		this.categoryId = categoryId;
 	}
+	
+	public Category(int categoryId, @NotBlank @Length(min = 2, max =50) String name) {
+		super();
+		this.categoryId = categoryId;
+		this.name = name;
+	}
 
 	public int getCategoryId() {
 		return this.categoryId;
@@ -65,6 +72,8 @@ public class Category extends EntityBase<Category> implements Serializable {
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
+	
+	
 
 	public Timestamp getLastUpdate() {
 		return this.lastUpdate;
@@ -123,7 +132,7 @@ public class Category extends EntityBase<Category> implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Category [categoryId=" + categoryId + ", name=" + name + ", lastUpdate=" + lastUpdate + "]";
+		return "Category [categoryId=" + categoryId + ", name=" + name + ", lastUpdate=" + lastUpdate + ", filmCategories=" + filmCategories + "]";
 	}
 
 }

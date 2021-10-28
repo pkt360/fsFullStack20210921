@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,18 +26,25 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.domains.contracts.services.ActorService;
+
+import com.example.domains.entities.Category;
+import com.example.domains.entities.Language;
 import com.example.domains.entities.dtos.ActorDTO;
+import com.example.domains.entities.dtos.FilmDTO;
+
+import com.example.exceptions.BadRequestException;
 import com.example.exceptions.DuplicateKeyException;
 import com.example.exceptions.InvalidDataException;
 import com.example.exceptions.NotFoundException;
+import com.example.domains.contracts.services.FilmService;
+
 
 @RestController
 @RequestMapping(path = "/peliculas")
 public class FilmResource {
 	
 	@Autowired
-	ActorService srv;
+	FilmService srv;
 	
 	@GetMapping
 	public List<FilmDTO> getAll(@RequestParam(required = false) String sort) {
@@ -48,27 +55,49 @@ public class FilmResource {
 	}
 	
 	@GetMapping(params = "page")
-	public Page<FilmrDTO> getAllPageable(Pageable item) {
+	public Page<FilmDTO> getAllPageable(Pageable item) {
 		return srv.getByProjection(item, FilmDTO.class);
 	}
 
 	@GetMapping(path = "/{id}")
 	public FilmDTO getOne(@PathVariable int id) throws NotFoundException {
-		var actor = srv.getOne(id);
-		if(actor.isEmpty())
+		var film = srv.getOne(id);
+		if(film.isEmpty())
 			throw new NotFoundException();
 		else
-			return FilmDTO.from(actor.get());
+			return FilmDTO.from(film.get());
 	}
 	
 	@GetMapping(path = "/{id}/actores")
 	@Transactional
-	public List<FilmShort> getPelis(@PathVariable int id) throws NotFoundException {
+	public List<ActorDTO> getActores(@PathVariable int id) throws NotFoundException {
 		var film = srv.getOne(id);
 		if(film.isEmpty())
 			throw new NotFoundException();
 		else {
-			return srv.getFilmActores(id).stream().map(Item -> ActorDTO.from(item)).collect(Collectors.toList());
+			return srv.getFilmActores(id).stream().map(item -> ActorDTO.from(item)).collect(Collectors.toList());
+		}
+	}
+	
+	@GetMapping(path = "/{id}/idiomas")
+	@Transactional
+	public List<Language> getLanguages(@PathVariable int id) throws NotFoundException {
+		var film = srv.getOne(id);
+		if(film.isEmpty())
+			throw new NotFoundException();
+		else {
+			return srv.getFilmLanguages(id);
+		}
+	}
+	
+	@GetMapping(path = "/{id}/categorias")
+	@Transactional
+	public List<Category> getCategories(@PathVariable int id) throws NotFoundException {
+		var film = srv.getOne(id);
+		if(film.isEmpty())
+			throw new NotFoundException();
+		else {
+			return srv.getFilmCategorias(id);
 		}
 	}
 	

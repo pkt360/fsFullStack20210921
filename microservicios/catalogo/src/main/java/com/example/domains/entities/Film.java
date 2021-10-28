@@ -3,6 +3,7 @@ package com.example.domains.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.Valid;
+import javax.validation.constraints.PastOrPresent;
 
 import com.example.domains.core.EntityBase;
 
@@ -71,12 +72,41 @@ public class Film extends EntityBase<Film> implements Serializable {
 
 	public Film() {
 	}
-
+	
+	
+	
 	public Film(int filmId) {
 		super();
 		this.filmId = filmId;
 	}
-
+	
+	public Film(int filmId, String title, String description) {
+		super();
+		this.filmId = filmId;
+		this.title = title;
+		this.description = description;
+	}
+	
+	public Film(int filmId, String title, Language language) {
+		super();
+		this.filmId = filmId;
+		this.title = title;
+		this.language = language;
+	}
+	
+	public Film(int filmId, String title, String description, Language language, @PastOrPresent Timestamp lastUpdate,
+			byte rentalDuration, BigDecimal rentalRate, BigDecimal replacementCost) {
+		super();
+		this.filmId = filmId;
+		this.title = title;
+		this.description = description;
+		this.language = language;
+		this.lastUpdate = lastUpdate;
+		this.rentalDuration = rentalDuration;
+		this.rentalRate = rentalRate;
+		this.replacementCost = replacementCost;
+	}
+	
 	public int getFilmId() {
 		return this.filmId;
 	}

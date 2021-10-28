@@ -33,6 +33,11 @@ public class FilmActor implements Serializable {
 
 	public FilmActor() {
 	}
+	
+	public FilmActor(Actor actor, FilmActor film) {
+		super();
+		this.film = this.film;
+	}
 
 	public FilmActor(Film film, Actor actor) {
 		super();

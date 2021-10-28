@@ -8,9 +8,6 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,13 +17,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.domains.contracts.services.ActorService;
+import com.example.domains.contracts.services.LanguageService;
 import com.example.domains.entities.Language;
+import com.example.domains.entities.dtos.FilmShort;
+import com.example.exceptions.BadRequestException;
 import com.example.exceptions.DuplicateKeyException;
 import com.example.exceptions.InvalidDataException;
 import com.example.exceptions.NotFoundException;
@@ -36,7 +35,7 @@ import com.example.exceptions.NotFoundException;
 public class LanguageResource {
 	
 	@Autowired
-	ActorService srv;
+	LanguageService srv;
 	
 	@GetMapping
 	public List<Language> getAll() {
@@ -50,17 +49,17 @@ public class LanguageResource {
 		if(language.isEmpty())
 			throw new NotFoundException();
 		else
-			return language.get());
+			return language.get();
 	}
 	
 	@GetMapping(path = "/{id}/peliculas")
 	@Transactional
 	public List<FilmShort> getPelis(@PathVariable int id) throws NotFoundException {
-		var Lenguage = srv.getOne(id);
-		if(Lenguage.isEmpty())
+		var language = srv.getOne(id);
+		if(language.isEmpty())
 			throw new NotFoundException();
 		else {
-			return srv.getLanguageFilms(id).stream().map(Item -> FilmShort.from(item)).collect(Collectors.toList());
+			return srv.getLanguageFilms(id).stream().map(item -> FilmShort.from(item)).collect(Collectors.toList());
 		}
 	}
 	

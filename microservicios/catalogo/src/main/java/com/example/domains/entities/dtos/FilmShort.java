@@ -8,12 +8,12 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public interface FilmShort {
+public class FilmShort {
 	private int filmId;
 	private String title;
 	
 	public static FilmShort from(Film source) {
-		return new FilmShort()
+		return new FilmShort(
 				source.getFilmId(),
 				source.getTitle()
 		);

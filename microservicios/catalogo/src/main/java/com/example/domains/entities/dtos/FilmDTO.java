@@ -5,8 +5,7 @@ import java.sql.Timestamp;
 import com.example.domains.entities.Film;
 import com.example.domains.entities.Language;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
+import java.math.BigDecimal;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -27,12 +26,12 @@ public class FilmDTO {
 	@JsonProperty("duracion alquiler")
 	private byte rentalDuration;
 	@JsonProperty("rental rate")
-	private float rentalRate;
+	private BigDecimal rentalRate;
 	@JsonProperty("coste")
-	private float replacementCost;
+	private BigDecimal replacementCost;
 	
 	public FilmDTO(int filmId, String title, String description, Language language,
-			Timestamp lastUpdate, byte rentalDuration, float rentalRate, float replacementCost) {
+			Timestamp lastUpdate, byte rentalDuration, BigDecimal rentalRate, BigDecimal replacementCost) {
 		super();
 		this.filmId = filmId;
 		this.title = title;

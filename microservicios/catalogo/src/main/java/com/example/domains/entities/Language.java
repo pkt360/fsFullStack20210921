@@ -1,11 +1,17 @@
 package com.example.domains.entities;
 
 import java.io.Serializable;
+
+
 import javax.persistence.*;
+import javax.validation.constraints.PastOrPresent;
+
+
 
 import com.example.domains.core.EntityBase;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -29,8 +35,11 @@ public class Language extends EntityBase<Language> implements Serializable {
 
 	@Column(name="last_update")
 	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonProperty("ultima actualizacion")
+	//@Generated(value = GenerationTime.ALWAYS)
+	@PastOrPresent
 	private Timestamp lastUpdate;
-
+	@JsonProperty("idioma")
 	private String name;
 
 	//bi-directional many-to-one association to Film
@@ -127,11 +136,11 @@ public class Language extends EntityBase<Language> implements Serializable {
 		return Objects.hash(languageId);
 	}
 
+/*	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
@@ -139,5 +148,6 @@ public class Language extends EntityBase<Language> implements Serializable {
 		return languageId == other.languageId;
 	}
 
+*/
 	
 }
