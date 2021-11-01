@@ -8,7 +8,6 @@ import javax.validation.constraints.PastOrPresent;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.context.event.EventPublicationInterceptor;
 
 import com.example.domains.core.EntityBase;
 import com.fasterxml.jackson.annotation.JsonIgnore;

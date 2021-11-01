@@ -1,5 +1,6 @@
-package com.example.infraestructure.repositories;
+package com.example.infrastructure.repositories;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -19,4 +20,6 @@ public interface LanguageRepository extends JpaRepository<Language, Integer>{
 	
 	@Query("SELECT l.films FROM Language l WHERE l.languageId = ?1")
 	List<Film> getLanguageFilms(int id);
+	
+	List<Language> findByLastUpdateGreaterThanEqualOrderByLastUpdate(Timestamp fecha);
 }

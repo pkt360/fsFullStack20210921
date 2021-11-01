@@ -5,7 +5,7 @@ public class NotFoundException extends Exception {
 	private final static String MESSAGE_STRING = "Not found";
 	
 	public NotFoundException() {
-		this(MESSAGE_STRING);
+		super("Duplicate key");	
 	}
 
 	public NotFoundException(String message) {

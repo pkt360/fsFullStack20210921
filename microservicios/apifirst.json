@@ -1,0 +1,1981 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Microservicio: Catalogo de peliculas",
+    "description": "Ejemplo de Microservicio utilizando la base de datos **Sakila**.",
+    "contact": {
+      "name": "Yo Mismo",
+      "url": "http://www.example.com",
+      "email": "myeaddress@example.com"
+    },
+    "license": {
+      "name": "Apache License Version 2.0"
+    },
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8010",
+      "description": "Inferred Url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "actor-resource",
+      "description": "API REST de Actores"
+    },
+    {
+      "name": "catalogo-resource",
+      "description": "Catalogo Resource"
+    },
+    {
+      "name": "category-resource",
+      "description": "Category Resource"
+    },
+    {
+      "name": "film-resource",
+      "description": "Mantenimiento de peliculas"
+    },
+    {
+      "name": "language-resource",
+      "description": "Language Resource"
+    }
+  ],
+  "paths": {
+    "/actores": {
+      "get": {
+        "tags": [
+          "actor-resource"
+        ],
+        "summary": "getAllPageable",
+        "operationId": "getAllPageableUsingGET",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "allowReserved": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "paged",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sort.sorted",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sort.unsorted",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "unpaged",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageActorDTO"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "actor-resource"
+        ],
+        "summary": "create",
+        "operationId": "createUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActorDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/actores/{id}": {
+      "get": {
+        "tags": [
+          "actor-resource"
+        ],
+        "summary": "getOne",
+        "operationId": "getOneUsingGET",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActorDTO"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "actor-resource"
+        ],
+        "summary": "update",
+        "operationId": "updateUsingPUT",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActorDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActorDTO"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "actor-resource"
+        ],
+        "summary": "delete",
+        "operationId": "deleteUsingDELETE",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/actores/{id}/peliculas": {
+      "get": {
+        "tags": [
+          "actor-resource"
+        ],
+        "summary": "getPelis",
+        "operationId": "getPelisUsingGET",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PeliculaCorto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "tags": [
+          "catalogo-resource"
+        ],
+        "summary": "getResources",
+        "operationId": "getResourcesUsingGET",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogoResources"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/novedades": {
+      "get": {
+        "tags": [
+          "catalogo-resource"
+        ],
+        "summary": "novedades",
+        "operationId": "novedadesUsingGET",
+        "parameters": [
+          {
+            "name": "fecha",
+            "in": "query",
+            "description": "fecha",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/NovedadesDTO"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/categorias": {
+      "get": {
+        "tags": [
+          "category-resource"
+        ],
+        "summary": "getAll",
+        "operationId": "getAllUsingGET_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "category-resource"
+        ],
+        "summary": "create",
+        "operationId": "createUsingPOST_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/categorias/{id}": {
+      "get": {
+        "tags": [
+          "category-resource"
+        ],
+        "summary": "getOne",
+        "operationId": "getOneUsingGET_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "category-resource"
+        ],
+        "summary": "update",
+        "operationId": "updateUsingPUT_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "category-resource"
+        ],
+        "summary": "delete",
+        "operationId": "deleteUsingDELETE_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/categorias/{id}/peliculas": {
+      "get": {
+        "tags": [
+          "category-resource"
+        ],
+        "summary": "getPelis",
+        "operationId": "getPelisUsingGET_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PeliculaCorto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/peliculas": {
+      "get": {
+        "tags": [
+          "film-resource"
+        ],
+        "summary": "Listado de las peliculas",
+        "operationId": "getAllUsingGET_3",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "paged",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sort.sorted",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sort.unsorted",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "unpaged",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageFilm"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "film-resource"
+        ],
+        "summary": "Añadir una nueva pelicula",
+        "operationId": "addUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PeliculaEditor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Pelicula añadida",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Pelicula no encontrada"
+          }
+        }
+      }
+    },
+    "/peliculas/{id}": {
+      "get": {
+        "tags": [
+          "film-resource"
+        ],
+        "summary": "Recupera la versión completa de una pelicula",
+        "operationId": "getOneDetalleUsingGET",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador de la pelicula",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "description": "mode",
+            "required": true,
+            "style": "form",
+            "allowReserved": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "details",
+                "edit",
+                "short"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pelicula encontrada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PeliculaDetalles"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Pelicula no encontrada"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "film-resource"
+        ],
+        "summary": "Modificar una pelicula existente",
+        "description": "Los identificadores deben coincidir",
+        "operationId": "modifyUsingPUT",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador de la pelicula",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PeliculaEditor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Pelicula encontrada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PeliculaEditor"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Pelicula no encontrada"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "film-resource"
+        ],
+        "summary": "Borrar una pelicula existente",
+        "operationId": "deleteUsingDELETE_2",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador de la pelicula",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Pelicula borrada"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Pelicula no encontrada"
+          }
+        }
+      }
+    },
+    "/peliculas/{id}/categorias": {
+      "get": {
+        "tags": [
+          "film-resource"
+        ],
+        "summary": "Listado de las categorias de la pelicula",
+        "operationId": "getCategoriesUsingGET",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador de la pelicula",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pelicula encontrada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Pelicula no encontrada"
+          }
+        }
+      }
+    },
+    "/peliculas/{id}/reparto": {
+      "get": {
+        "tags": [
+          "film-resource"
+        ],
+        "summary": "Listado de los actores de la pelicula",
+        "operationId": "getFilmsUsingGET",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador de la pelicula",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pelicula encontrada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ActorDTO"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Pelicula no encontrada"
+          }
+        }
+      }
+    },
+    "/idiomas": {
+      "get": {
+        "tags": [
+          "language-resource"
+        ],
+        "summary": "getAll",
+        "operationId": "getAllUsingGET_4",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LanguagePartialView"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "language-resource"
+        ],
+        "summary": "add",
+        "operationId": "addUsingPOST_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Language"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/idiomas/{id}": {
+      "get": {
+        "tags": [
+          "language-resource"
+        ],
+        "summary": "getOne",
+        "operationId": "getOneUsingGET_3",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/LanguageCompleteView"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "language-resource"
+        ],
+        "summary": "modify",
+        "operationId": "modifyUsingPUT_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Language"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/LanguagePartialView"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "language-resource"
+        ],
+        "summary": "delete",
+        "operationId": "deleteUsingDELETE_3",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/idiomas/{id}/peliculas": {
+      "get": {
+        "tags": [
+          "language-resource"
+        ],
+        "summary": "getFilms",
+        "operationId": "getFilmsUsingGET_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PeliculaCorto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/idiomas/{id}/vo": {
+      "get": {
+        "tags": [
+          "language-resource"
+        ],
+        "summary": "getFilmsVO",
+        "operationId": "getFilmsVOUsingGET",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PeliculaCorto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Actor": {
+        "title": "Actor",
+        "required": [
+          "firstName",
+          "lastName"
+        ],
+        "type": "object",
+        "properties": {
+          "actorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "filmActors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FilmActor"
+            }
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "lastUpdate": {
+            "$ref": "#/components/schemas/Timestamp"
+          }
+        }
+      },
+      "ActorDTO": {
+        "title": "ActorDTO",
+        "type": "object",
+        "properties": {
+          "apellidos": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombre": {
+            "type": "string"
+          }
+        }
+      },
+      "CatalogoLinks": {
+        "title": "CatalogoLinks",
+        "type": "object",
+        "properties": {
+          "actores": {
+            "$ref": "#/components/schemas/Href"
+          },
+          "categorias": {
+            "$ref": "#/components/schemas/Href"
+          },
+          "idiomas": {
+            "$ref": "#/components/schemas/Href"
+          },
+          "novedades": {
+            "$ref": "#/components/schemas/Href"
+          },
+          "peliculas": {
+            "$ref": "#/components/schemas/Href"
+          },
+          "self": {
+            "$ref": "#/components/schemas/Href"
+          }
+        }
+      },
+      "CatalogoResources": {
+        "title": "CatalogoResources",
+        "type": "object",
+        "properties": {
+          "_links": {
+            "$ref": "#/components/schemas/CatalogoLinks"
+          }
+        }
+      },
+      "Category": {
+        "title": "Category",
+        "required": [
+          "categoria"
+        ],
+        "type": "object",
+        "properties": {
+          "categoria": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Film": {
+        "title": "Film",
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "filmId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "language": {
+            "$ref": "#/components/schemas/Language"
+          },
+          "languageVO": {
+            "$ref": "#/components/schemas/Language"
+          },
+          "lastUpdate": {
+            "$ref": "#/components/schemas/Timestamp"
+          },
+          "length": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rating": {
+            "type": "string"
+          },
+          "releaseYear": {
+            "type": "string",
+            "example": "yyyy"
+          },
+          "rentalDuration": {
+            "type": "string",
+            "format": "byte"
+          },
+          "rentalRate": {
+            "type": "number",
+            "format": "bigdecimal"
+          },
+          "replacementCost": {
+            "type": "number",
+            "format": "bigdecimal"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "FilmActor": {
+        "title": "FilmActor",
+        "type": "object",
+        "properties": {
+          "actor": {
+            "$ref": "#/components/schemas/Actor"
+          },
+          "film": {
+            "$ref": "#/components/schemas/Film"
+          },
+          "id": {
+            "$ref": "#/components/schemas/FilmActorPK"
+          },
+          "lastUpdate": {
+            "$ref": "#/components/schemas/Timestamp"
+          }
+        }
+      },
+      "FilmActorPK": {
+        "title": "FilmActorPK",
+        "type": "object",
+        "properties": {
+          "actorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "filmId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Href": {
+        "title": "Href",
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string"
+          }
+        }
+      },
+      "Language": {
+        "title": "Language",
+        "required": [
+          "idioma"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idioma": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string"
+          },
+          "lastUpdate": {
+            "type": "string",
+            "example": "dd/MM/yyyy hh:mm:ss"
+          }
+        }
+      },
+      "LanguageCompleteView": {
+        "title": "LanguageCompleteView",
+        "required": [
+          "idioma"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idioma": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string"
+          },
+          "lastUpdate": {
+            "type": "string",
+            "example": "dd/MM/yyyy hh:mm:ss"
+          }
+        }
+      },
+      "LanguagePartialView": {
+        "title": "LanguagePartialView",
+        "required": [
+          "idioma"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idioma": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string"
+          }
+        }
+      },
+      "NovedadesDTO": {
+        "title": "NovedadesDTO",
+        "type": "object",
+        "properties": {
+          "actors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Actor"
+            }
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Category"
+            }
+          },
+          "films": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Film"
+            }
+          },
+          "idiomas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Language"
+            }
+          }
+        }
+      },
+      "Pageable": {
+        "title": "Pageable",
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "paged": {
+            "type": "boolean"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/Sort"
+          },
+          "unpaged": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PageActorDTO": {
+        "title": "PageActorDTO",
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActorDTO"
+            }
+          },
+          "empty": {
+            "type": "boolean"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/Pageable"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/Sort"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "PageFilm": {
+        "title": "PageFilm",
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Film"
+            }
+          },
+          "empty": {
+            "type": "boolean"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/Pageable"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/Sort"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "PeliculaCorto": {
+        "title": "PeliculaCorto",
+        "required": [
+          "filmId",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "filmId": {
+            "type": "integer",
+            "description": "Identificador de la pelicula",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string",
+            "description": "Titulo de la pelicula"
+          }
+        },
+        "description": "Version corta de las peliculas"
+      },
+      "PeliculaDetalles": {
+        "title": "PeliculaDetalles",
+        "required": [
+          "filmId",
+          "length",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "actors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": {
+            "type": "string",
+            "description": "Descripcion de la pelicula"
+          },
+          "filmId": {
+            "type": "integer",
+            "description": "Identificador de la pelicula",
+            "format": "int32"
+          },
+          "language": {
+            "type": "string"
+          },
+          "languageVO": {
+            "type": "string"
+          },
+          "length": {
+            "type": "integer",
+            "description": "Duración de la pelicula",
+            "format": "int32"
+          },
+          "rating": {
+            "type": "string"
+          },
+          "releaseYear": {
+            "type": "string",
+            "example": "yyyy"
+          },
+          "rentalDuration": {
+            "type": "string",
+            "format": "byte"
+          },
+          "rentalRate": {
+            "type": "number",
+            "format": "bigdecimal"
+          },
+          "replacementCost": {
+            "type": "number",
+            "format": "bigdecimal"
+          },
+          "title": {
+            "type": "string",
+            "description": "Titulo de la pelicula",
+            "enum": [
+              "Un maximo de 255 caracteres"
+            ]
+          }
+        },
+        "description": "Version completa de las peliculas"
+      },
+      "PeliculaEditor": {
+        "title": "PeliculaEditor",
+        "required": [
+          "filmId",
+          "length",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "actors": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "description": {
+            "type": "string",
+            "description": "Descripcion de la pelicula"
+          },
+          "filmId": {
+            "type": "integer",
+            "description": "Identificador de la pelicula",
+            "format": "int32"
+          },
+          "languageId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "languageVOId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "length": {
+            "type": "integer",
+            "description": "Duración de la pelicula",
+            "format": "int32"
+          },
+          "rating": {
+            "type": "string",
+            "description": "Clasificación de la pelicula",
+            "enum": [
+              "G",
+              "NC-17",
+              "PG",
+              "PG-13",
+              "R"
+            ]
+          },
+          "releaseYear": {
+            "type": "string",
+            "example": "yyyy"
+          },
+          "rentalDuration": {
+            "type": "string",
+            "format": "byte"
+          },
+          "rentalRate": {
+            "type": "number",
+            "format": "bigdecimal"
+          },
+          "replacementCost": {
+            "type": "number",
+            "format": "bigdecimal"
+          },
+          "title": {
+            "type": "string",
+            "description": "Titulo de la pelicula",
+            "enum": [
+              "Un maximo de 255 caracteres"
+            ]
+          }
+        },
+        "description": "Version editable de las peliculas"
+      },
+      "Sort": {
+        "title": "Sort",
+        "type": "object",
+        "properties": {
+          "empty": {
+            "type": "boolean"
+          },
+          "sorted": {
+            "type": "boolean"
+          },
+          "unsorted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Timestamp": {
+        "title": "Timestamp",
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "day": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hours": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minutes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "month": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nanos": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "seconds": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "time": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "timezoneOffset": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "year": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    }
+  }
+}

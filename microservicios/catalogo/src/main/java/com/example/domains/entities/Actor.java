@@ -112,7 +112,6 @@ public class Actor extends EntityBase<Actor> implements Serializable {
 	public FilmActor addFilmActor(FilmActor filmActor) {
 		getFilmActors().add(filmActor);
 		filmActor.setActor(this);
-
 		return filmActor;
 	}
 	public FilmActor addFilmActor(Film film) {
@@ -126,7 +125,6 @@ public class Actor extends EntityBase<Actor> implements Serializable {
 	public FilmActor removeFilmActor(FilmActor filmActor) {
 		getFilmActors().remove(filmActor);
 		filmActor.setActor(null);
-
 		return filmActor;
 	}
 
@@ -152,7 +150,8 @@ public class Actor extends EntityBase<Actor> implements Serializable {
 		return "Actor [actorId=" + actorId + ", firstName=" + firstName + ", lastName=" + lastName + ", lastUpdate="
 				+ lastUpdate + "]";
 	}
-
+	
+	/*
 	public void jubilate() {
 		
 	}
@@ -164,6 +163,6 @@ public class Actor extends EntityBase<Actor> implements Serializable {
 	public void darPremio(String premio) {
 		
 	}
-
+	*/
 	
 }

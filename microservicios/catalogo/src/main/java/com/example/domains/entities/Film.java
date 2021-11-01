@@ -2,13 +2,16 @@ package com.example.domains.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.PastOrPresent;
 
-import com.example.domains.core.EntityBase;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 
+import com.example.domains.core.EntityBase;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,13 +34,16 @@ public class Film extends EntityBase<Film> implements Serializable {
 	private String description;
 
 	@Column(name="last_update")
-	private Timestamp lastUpdate;
+	@Generated(value = GenerationTime.ALWAYS)
+	@PastOrPresent
+	private Timestamp lastUpdate = new Timestamp(System.currentTimeMillis());
 
 	private int length;
 
 	private String rating;
 
 	@Column(name="release_year")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy")
 	private Short releaseYear;
 
 	@Column(name="rental_duration")
@@ -62,31 +68,33 @@ public class Film extends EntityBase<Film> implements Serializable {
 	private Language languageVO;
 
 	//bi-directional many-to-one association to FilmActor
-	@OneToMany(mappedBy="film")
-	private List<FilmActor> filmActors;
+	@OneToMany(mappedBy="film", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<FilmActor> filmActors = new ArrayList<FilmActor>();
 
 	//bi-directional many-to-one association to FilmCategory
-	@OneToMany(mappedBy="film")
-	@Valid
-	private List<FilmCategory> filmCategories;
+	@OneToMany(mappedBy="film", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<FilmCategory> filmCategories = new ArrayList<FilmCategory>();
 
 	public Film() {
 	}
-	
-	
-	
+
+
 	public Film(int filmId) {
 		super();
 		this.filmId = filmId;
 	}
-	
+
+
+
 	public Film(int filmId, String title, String description) {
 		super();
 		this.filmId = filmId;
 		this.title = title;
 		this.description = description;
 	}
-	
+
+
+
 	public Film(int filmId, String title, Language language) {
 		super();
 		this.filmId = filmId;
@@ -94,25 +102,39 @@ public class Film extends EntityBase<Film> implements Serializable {
 		this.language = language;
 	}
 	
-	public Film(int filmId, String title, String description, Language language, @PastOrPresent Timestamp lastUpdate,
-			byte rentalDuration, BigDecimal rentalRate, BigDecimal replacementCost) {
+	
+
+
+	public Film(int filmId,String title, String description,Language language, Language languageVO, int length, String rating,Short releaseYear, byte rentalDuration,
+			BigDecimal rentalRate, BigDecimal replacementCost  ) {
+		
 		super();
 		this.filmId = filmId;
 		this.title = title;
 		this.description = description;
 		this.language = language;
-		this.lastUpdate = lastUpdate;
+		this.languageVO = languageVO; 
+		this.length = length;
+		this.rating = rating;
+		this.releaseYear = releaseYear;
 		this.rentalDuration = rentalDuration;
 		this.rentalRate = rentalRate;
 		this.replacementCost = replacementCost;
+		
+		
 	}
-	
+
+
 	public int getFilmId() {
 		return this.filmId;
 	}
 
 	public void setFilmId(int filmId) {
 		this.filmId = filmId;
+		if(filmActors != null && filmActors.size() > 0)
+			filmActors.forEach(item -> { if(item.getId().getFilmId() != filmId) item.getId().setFilmId(filmId); });
+		if(filmCategories != null && filmCategories.size() > 0)
+			filmCategories.forEach(item -> { if(item.getId().getFilmId() != filmId) item.getId().setFilmId(filmId); });
 	}
 
 	public String getDescription() {
@@ -217,6 +239,11 @@ public class Film extends EntityBase<Film> implements Serializable {
 
 		return filmActor;
 	}
+	public FilmActor addFilmActor(Actor actor) {
+		FilmActor filmActor = new FilmActor(this, actor);
+		getFilmActors().add(filmActor);
+		return filmActor;
+	}
 
 	public FilmActor removeFilmActor(FilmActor filmActor) {
 		getFilmActors().remove(filmActor);
@@ -239,6 +266,12 @@ public class Film extends EntityBase<Film> implements Serializable {
 
 		return filmCategory;
 	}
+	
+	public FilmCategory addFilmCategory(Category category) {
+		FilmCategory filmCategory = new FilmCategory(this, category);
+		getFilmCategories().add(filmCategory);
+		return filmCategory;
+	}
 
 	public FilmCategory removeFilmCategory(FilmCategory filmCategory) {
 		getFilmCategories().remove(filmCategory);
@@ -247,9 +280,12 @@ public class Film extends EntityBase<Film> implements Serializable {
 		return filmCategory;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Film [filmId=" + filmId + ", title=" + title + "]";
 	}
+	
+	
 
 }

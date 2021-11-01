@@ -1,5 +1,6 @@
 package com.example.domains.services;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +15,7 @@ import com.example.domains.entities.Actor;
 import com.example.exceptions.DuplicateKeyException;
 import com.example.exceptions.InvalidDataException;
 import com.example.exceptions.NotFoundException;
-import com.example.infraestructure.repositories.ActorRepository;
+import com.example.infrastructure.repositories.ActorRepository;
 
 @Service
 public class ActorServiceImpl implements ActorService {
@@ -88,6 +89,11 @@ public class ActorServiceImpl implements ActorService {
 		if(item == null)
 			throw new InvalidDataException("Faltan los datos");
 		deleteById(item.getActorId());
+	}
+	
+	@Override
+	public List<Actor> novedades(Timestamp fecha) {
+		return dao.findByLastUpdateGreaterThanEqualOrderByLastUpdate(fecha);
 	}
 
 }
