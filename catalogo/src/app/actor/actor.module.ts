@@ -5,6 +5,7 @@ import { MyCoreModule } from '../lib/my-core';
 import { RouterModule } from '@angular/router';
 import { CommonServicesModule } from '../common-services';
 import { CommonComponentModule } from '../common-component';
+import { ACTOR_COMPONENTES } from './actor.component';
 
 
 
@@ -14,7 +15,7 @@ import { CommonComponentModule } from '../common-component';
   ],
 
   exports:[
-
+    ACTOR_COMPONENTES,
   ],
 
   imports: [

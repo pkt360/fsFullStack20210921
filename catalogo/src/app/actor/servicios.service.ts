@@ -106,6 +106,23 @@ import { AuthService, AUTH_REQUIRED } from '../security';
       this.router.navigateByUrl(this.listURL);
     }
 
+    public send(): void {
+      switch (this.modo) {
+        case 'add':
+          this.dao.add(this.elemento).subscribe(
+            (data) => this.cancel(),
+            (err) => this.notify.add(err.message)
+          );
+          break;
+        case 'edit':
+          this.dao.change(this.idOriginal, this.elemento).subscribe(
+            (data) => this.cancel(),
+            (err) => this.notify.add(err.message)
+          );
+          break;
+        case 'view':
+          break;
+      }
 
   }
 
