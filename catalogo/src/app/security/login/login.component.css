@@ -1,0 +1,7 @@
+input{
+  font-weight: 600;
+}
+
+:host-context(.navbar-dark) small {
+  color: white;
+}

@@ -1,0 +1,96 @@
+GET http://localhost:8010
+###
+GET http://localhost:8010/novedades?fecha=2021-10-26 00:00:00
+###
+GET http://localhost:8010/actores
+###
+GET http://localhost:8010/actores/1
+###
+GET http://localhost:8010/actores/1/peliculas
+###
+GET http://localhost:8010/categorias
+###
+GET http://localhost:8010/categorias/1/peliculas
+###
+PUT http://localhost:8010/categorias/17
+Content-Type: application/json
+
+{
+"id": 17, "categoria": "SERIE B"
+}
+###
+GET http://localhost:8010/categorias/17
+
+###
+GET http://localhost:8010/idiomas
+###
+GET http://localhost:8010/idiomas/1
+###
+GET http://localhost:8010/idiomas/1/peliculas
+###
+GET http://localhost:8010/idiomas/1/vo
+###
+POST http://localhost:8010/idiomas
+Content-Type: application/json
+
+{ "idioma": "Español" }
+
+###
+GET http://localhost:8010/peliculas
+###
+GET http://localhost:8010/peliculas?mode=short
+###
+GET http://localhost:8010/peliculas/1?mode=short
+###
+GET http://localhost:8010/peliculas/1001?mode=details
+###
+GET http://localhost:8010/peliculas/1?mode=edit
+###
+GET http://localhost:8010/peliculas/1/reparto
+###
+GET http://localhost:8010/peliculas/3/categorias
+###
+POST http://localhost:8010/peliculas
+Content-Type: application/json
+
+{
+  "filmId": 0,
+  "description": "Fabricación propia",
+  "length": 90,
+  "rating": "NC-17",
+  "releaseYear": "2021",
+  "rentalDuration": 6,
+  "rentalRate": 1.99,
+  "replacementCost": 21.99,
+  "title": "MI PELI",
+  "languageId": 7,
+  "languageVOId": 2,
+  "actors": [ 1, 3, 5, 7, 11 ],
+  "categories": [ 5, 10 ]
+}
+###
+PUT http://localhost:8010/peliculas/1002
+Content-Type: application/json
+
+{
+  "filmId": 1002,
+  "description": "Fabricación propias",
+  "length": 90,
+  "rating": "NC-17",
+  "releaseYear": "2021",
+  "rentalDuration": 6,
+  "rentalRate": 1.99,
+  "replacementCost": 21.99,
+  "title": "MI PELI",
+  "languageId": 5,
+  "languageVOId": 3,
+  "actors": [ 2, 3, 5, 7, 10 ],
+  "categories": [ 1, 5, 3 ]
+}
+
+###
+GET http://localhost:8010/peliculas/1/reparto
+###
+GET http://localhost:8010/peliculas/1/categorias
+###
+DELETE http://localhost:8010/peliculas/1001

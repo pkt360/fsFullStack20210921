@@ -1,0 +1,21 @@
+GET http://localhost:8010/params/17?nom=hola
+Accept-Language: cristiano
+
+###
+
+GET http://localhost:8010/params/2?nom=adios
+Accept-Language: cristiano
+
+
+###
+
+
+POST http://localhost:8010/salida
+Accept-Language: es-es
+Accept: text/xml, application/xml
+Content-Type: application/xml
+
+    <ActorDTO>
+    <id> 7</id>
+    </ActorDTO>
+    
